@@ -77,23 +77,22 @@ function Pricing() {
                   <div class="max-w-4xl mx-auto">
                     <span class="text-white"> Pricing</span>
                     <h2 class="mt-6 text-3xl font-medium tracking-tight text-white lg:text-4xl">
-                      Super Simple pricing for<span class="block text-white">
-                        everyrone and theire neighbors</span>
+                      My Pricing Board<span class="block text-white">
+                        </span>
                     </h2>
                   </div>
                   <div class="grid grid-cols-1 gap-2 mt-12 lg:grid-cols-3">
                     <div class="flex flex-col p-8 shadow-2xl rounded-3xl bg-black/20 backdrop-blur-3xl shadow-gray-900/50">
                       <div class="flex items-center justify-between gap-3">
                         <p class="text-xl font-medium tracking-tight text-white">
-                          Starter Pack
+                          Hourly Basis
                         </p>
                         <p>
-                          <span class="text-2xl tracking-tight text-white"> Free</span>
+                          <span class="text-2xl tracking-tight text-white"> $50 hour</span>
                         </p>
                       </div>
                       <p class="mt-8 text-xs text-white/80">
-                        This plan is ideal for individual users and hobbyists who are looking
-                        for essential functionalities to support their projects.
+                       Basic Website development, informational website - non interactive
                       </p>
                       <ul class="flex flex-col order-last mt-8 text-sm text-white gap-y-3">
                         <li class="inline-flex items-center gap-2">
@@ -102,7 +101,7 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                           </svg>
-                          5 mb/PDF
+                          UX/UI design
                         </li>
                         <li class="inline-flex items-center gap-2">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -110,7 +109,7 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                           </svg>
-                          75 pages/PDF
+                          Mobile Responsive
                         </li>
                         <li class="inline-flex items-center gap-2">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -118,7 +117,7 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                           </svg>
-                          10 messages/Day
+                          Hosting
                         </li>
                         <li class="inline-flex items-center gap-2">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -126,7 +125,7 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                           </svg>
-                          Upto 3 PDFs
+                          Email configuration
                         </li>
                         <li class="inline-flex items-center gap-2 opacity-70">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -153,22 +152,21 @@ function Pricing() {
                       </ul>
                       <div class="flex mt-6">
                         <a class="flex items-center justify-center w-full h-10 px-4 py-2 text-base font-medium text-white transition-all duration-200 bg-white/5 b rounded-xl focus:ring-2 shadow-button shadow-gray-500/5 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none lg:h-12 hover:bg-white/10" href="#_" aria-describedby="#_">
-                          Get started
+                          Start Project
                         </a>
                       </div>
                     </div>
                     <div class="flex flex-col p-8 shadow-2xl rounded-3xl bg-black/50 backdrop-blur-3xl shadow-gray-900">
                       <div class="flex items-center justify-between gap-3">
                         <p class="text-xl font-medium tracking-tight text-white">
-                          Silver surfer
+                          Freelancing
                         </p>
                         <p>
-                          <span class="text-2xl tracking-tight text-white"> Free</span>
+                          <span class="text-2xl tracking-tight text-white"> $400 /week</span>
                         </p>
                       </div>
                       <p class="mt-8 text-xs text-white/80">
-                        If you're a small business or a startup, this plan is designed to
-                        cater to your needs. It offers a balance of essential features.
+                       Build Web Applications with full features, Email configuration and Hosting
                       </p>
                       <ul class="flex flex-col order-last mt-8 text-sm text-white gap-y-3">
                         <li class="inline-flex items-center gap-2">
@@ -177,7 +175,7 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                           </svg>
-                          10 mb/PDF
+                          UX/UI design
                         </li>
                         <li class="inline-flex items-center gap-2">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -185,7 +183,7 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                           </svg>
-                          150 pages/PDF
+                          Mobile Responsive
                         </li>
                         <li class="inline-flex items-center gap-2">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -193,7 +191,7 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                           </svg>
-                          25 messages/Day
+                          Business Logic - Backend
                         </li>
                         <li class="inline-flex items-center gap-2">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -201,7 +199,7 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                           </svg>
-                          Upto 3 PDFs
+                          Hosting
                         </li>
                         <li class="inline-flex items-center gap-2">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -209,13 +207,13 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                           </svg>
-                          Gpt-3.5-turbo model
+                          Email configuration
                         </li>
                         <li class="inline-flex items-center gap-2 opacity-70">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                            <path d="M10 10l4 4m0 -4l-4 4"></path></svg>Test mode
+                            <path d="M10 10l4 4m0 -4l-4 4"></path></svg>Blog
                         </li>
                         <li class="inline-flex items-center gap-2 opacity-70">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -223,28 +221,27 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M10 10l4 4m0 -4l-4 4"></path>
                           </svg>
-                          Doc summary
+                          On-Going Maintanance
                         </li>
                       </ul>
                       <div class="flex mt-6">
                         <a class="flex items-center justify-center w-full h-10 px-4 py-2 text-base font-medium text-gray-500 transition-all duration-200 bg-white border border-gray-300 rounded-xl hover:text-blue-700 focus:ring-2 shadow-button shadow-gray-500/5 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none lg:h-12" href="#_" aria-describedby="#_">
-                          Get started
+                          Start Project
                         </a>
                       </div>
                     </div>
                     <div class="flex flex-col p-8 shadow-2xl rounded-3xl bg-black/20 backdrop-blur-3xl shadow-gray-900/50">
                       <div class="flex items-center justify-between gap-3">
                         <p class="text-xl font-medium tracking-tight text-white">
-                          Golden Unicorn
+                          Fulltime
                         </p>
                         <p class="text-white">
-                          <span class="text-2xl tracking-tight"> $5</span>
+                          <span class="text-2xl tracking-tight"> $2250</span>
                           <span class="text-base font-medium"> /mo</span>
                         </p>
                       </div>
                       <p class="mt-8 text-xs text-white/80">
-                        Tailored for medium-sized businesses, this plan offers advanced tools
-                        and features to support your growing demands.
+                      Build Web Applications with full features plus Blog and On going Mainatance and Support
                       </p>
                       <ul class="flex flex-col order-last mt-8 text-sm text-white gap-y-3">
                         <li class="inline-flex items-center gap-2">
@@ -253,7 +250,7 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                           </svg>
-                          32 mb/PDF
+                          UX/UI design
                         </li>
                         <li class="inline-flex items-center gap-2">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -261,21 +258,13 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                           </svg>
-                          1500 pages/PDF
+                          Mobile Responsive
                         </li>
                         <li class="inline-flex items-center gap-2">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                            <path d="M9 12l2 2l4 -4"></path></svg>1000 messages/Day
-                        </li>
-                        <li class="inline-flex items-center gap-2">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                            <path d="M9 12l2 2l4 -4"></path>
-                          </svg>
-                          Upto 50 PDFs
+                            <path d="M9 12l2 2l4 -4"></path></svg>Email configuration
                         </li>
                         <li class="inline-flex items-center gap-2">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -283,7 +272,7 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                           </svg>
-                          Gpt-3.5-turbo-16k model
+                          Business Logic - Backend
                         </li>
                         <li class="inline-flex items-center gap-2">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -291,7 +280,7 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                           </svg>
-                          Test mode
+                          Hosting
                         </li>
                         <li class="inline-flex items-center gap-2">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -299,12 +288,20 @@ function Pricing() {
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                           </svg>
-                          Doc summary
+                          Blog
+                        </li>
+                        <li class="inline-flex items-center gap-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                            <path d="M9 12l2 2l4 -4"></path>
+                          </svg>
+                          On-Going Maintanance
                         </li>
                       </ul>
                       <div class="flex mt-6">
                         <a class="flex items-center justify-center w-full h-10 px-4 py-2 text-base font-medium text-white transition-all duration-200 bg-white/5 b rounded-xl focus:ring-2 shadow-button shadow-gray-500/5 focus:ring-blue-950 focus:ring-offset-2 ring-offset-gray-200 hover:shadow-none lg:h-12 hover:bg-white/10" href="#_" aria-describedby="#_">
-                          Get started
+                        Start Project
                         </a>
                       </div>
                     </div>
