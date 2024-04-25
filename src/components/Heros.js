@@ -7,9 +7,9 @@ const herobg5 = "https://cdn.pixabay.com/video/2020/09/26/50944-462202546_large.
 function Heros() {
   return (
     <div>
-      <div className="h-28">
-        <video className="lg:rotate-[deg] w-full shadow-xl w-full" autoPlay loop muted>
-          <source className="mainvid w-full rounded-md shadow-xl dark:shadow-black/20" alt="image" src={herobg5} type="video/mp4" />
+      <div className="lg:h-60">
+        <video className=" w-full shadow-xl w-full" autoPlay loop muted>
+          <source  className="mainvid rounded-md shadow-xl dark:shadow-black/20" alt="image" src={herobg5} type="video/mp4" />
         </video>
         {/* <div class="md:mb-12 shadow-lg shadow-blue-200 opacity-90">
             <img className='' src={rufus}
@@ -22,8 +22,8 @@ function Heros() {
             <div className="mx-auto xl:px-32">
               <div className="flex grid items-center lg:grid-cols-1">
                 {/* Conditionally render the div based on screen size */}
-                <div className="hidden md:block mb-12 md:mt-12 lg:mt-0 lg:mb-0">
-                  <div style={{ backgroundColor: 'rgba(11, 18, 63, 0.3)' }} className="relative z-[1] block rounded-lg px-12 py-20 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.7),0_10px_20px_-2px_rgba(0,0,0,0.5)] backdrop-blur-[0px] shadow-black/40 md:px-12 lg:-mr-14">
+                <div className="hidden md:block mb-12 md:mt-8 lg:mt-0 lg:mb-0">
+                  <div style={{ backgroundColor: 'rgba(11, 18, 63, 0.3)' }} className="relative block rounded-lg px-12 py-20 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.7),0_10px_20px_-2px_rgba(0,0,0,0.5)] backdrop-blur-[0px] shadow-black/40 md:px-12 lg:-mr-14">
                     <h4 className="mt-2 mb-8 text-2xl font-bold tracking-tight md:text-3xl xl:text-3xl text-white">
                       <span className='text-blue-500 animate-bounce'>Hello, My name is</span> <br /> Rufaro Mucheri <br /><span className="text-primary text-blue-500">I am a Web Developer</span>
                     </h4>

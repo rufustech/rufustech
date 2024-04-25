@@ -12,10 +12,10 @@ const Contact = () => {
           <div className="-mx-4 flex flex-wrap lg:justify-between">
             <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
               <div className="mb-12 max-w-[570px] lg:mb-0">
-               <span className="valuebody"> <h1 className="valueH1 mb-4 text-[#005da4]">
+               <span className="valuebody"> <h1 className="valueH1 mb-4 text-[#0B123F]">
                   Contact Us
                 </h1></span>
-                <h2 className="mb-6 text-[32px] font-bold uppercase text-[#005da4]  sm:text-[40px] lg:text-[36px] xl:text-[40px]">
+                <h2 className="mb-6 text-[32px] font-bold uppercase text-[#0B123F]  sm:text-[40px] lg:text-[36px] xl:text-[40px]">
                   GET IN TOUCH
                 </h2>
                 <p className="mb-9 text-base leading-relaxed text-body-color dark:text-dark-6">
@@ -77,7 +77,7 @@ const Contact = () => {
                     </svg>
                   </div>
                   <div className="w-full">
-                    <h4 className="mb-1 text-xl font-bold text-dark dark:text-red-900">
+                    <h4 className="mb-1 text-xl font-bold text-[#0B123F]">
                       Phone Number
                     </h4>
                     <p className="text-red-900 text-body-color dark:text-dark-6">
@@ -102,7 +102,7 @@ const Contact = () => {
                     </svg>
                   </div>
                   <div className="w-full">
-                    <h4 className="mb-1 text-xl font-bold text-dark dark:text-white">
+                    <h4 className="mb-1 text-xl font-bold text-[#0B123F]">
                       Email Address
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
@@ -140,7 +140,7 @@ const Contact = () => {
                   <div>
                     <button
                       type="submit"
-                      className="w-full rounded border border-primary bg-[#005da4] p-3 text-white transition hover:bg-[#c02128]"
+                      className="w-full rounded border border-primary bg-[#0B123F] p-3 text-white transition hover:bg-[#c02128]"
                     >
                       Send Message
                     </button>

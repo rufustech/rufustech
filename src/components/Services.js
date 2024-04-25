@@ -3,14 +3,14 @@ import { cloud, cooloffice, darkoffice, devops, laptopdev } from '../assets'
 
 function Services() {
   return (
-    <section class="text-gray-600 body-font mb-8">
-  <div class="container px-4 py- mx-auto">
-    <div class="flex flex-wrap w-full mb-20">
-      <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 md:text-black lg:text-white text-white">What I Do</h1>
-        <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+    <section class="container mx-auto text-gray-600 body-font mb-2">
+  <div class=" px-1 py- mx-auto">
+    <div class="flex flex-wrap w-full mb-0">
+      <div class="lg:w-1/2  mb-6 lg:mb-0">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 md:text-black lg:text-white text-white">What I Do</h1>
+        <div class="h-1 p2  w-20 bg-indigo-500 rounded"></div>
       </div>
-      <p class="lg:w-1/2 w-full leading-relaxed xl:text-white text-4x1 lg:text-white sm:text-black">My Services</p>
+      <p style={{fontSize: "28px"}} class="lg:w-1/2 w-full leading-relaxed xl:text-white text-2x1 lg:text-white sm:text-black pb-20">My Services</p>
     </div>
     <div class="flex flex-wrap -m-4">
       <div class="xl:w-1/4 md:w-1/2 p-4">

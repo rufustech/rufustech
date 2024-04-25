@@ -9,16 +9,18 @@ import Contact from './pages/Contact';
 function App() {
   return (
     <div >
-      <Header />
+     
       <BrowserRouter>
+      <Header />
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact/>} />
 
       </Routes> 
-      </BrowserRouter>
       <Footer />
+      </BrowserRouter>
+      
     </div>
   );
 }
