@@ -5,7 +5,7 @@ const BlogComponent = () => {
       
   <div class="container my-24 mx-auto md:px-6">
     <section class="mb-32 text-center md:text-left">
-      <h2 class="mb-12 text-center text-3xl font-bold">Latest articles</h2>
+      <h2 class="mb-12 text-center text-3xl font-bold">Latest Tech articles</h2>
   
       <div class="mb-6 flex flex-wrap">
         <div class="mb-6 ml-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-3/12">
