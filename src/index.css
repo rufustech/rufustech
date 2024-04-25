@@ -51,14 +51,14 @@ padding-left: 60px;
 
 .resumecard {
   position: relative;
-  width: 300px;
+  width: 320px;
   height: 450px;
   background: #354deb;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 5px;
   z-index: 1; /* Ensure the card container has a higher z-index */
 }
 

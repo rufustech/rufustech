@@ -9,15 +9,15 @@ function Resume() {
     </div>
       <div className="grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 justify-center items-center gap-2">
         <div className="resumecard">
-          <iframe src="https://www.magetsi.co.zw" title="Magetsi Website" style={{ width: "97.5%", height: "97.8%", borderRadius: "12px" }}></iframe>
+          <iframe src="https://www.magetsi.co.zw" title="Magetsi Website" style={{ width: "97.5%", height: "97.8%", borderRadius: "5px" }}></iframe>
           <h2></h2>
         </div>
         <div className="resumecard">
-        <iframe src="https://www.wildroseplacement.com" title="Wildrose Website" style={{ width: "97.5%", height: "97.8%", borderRadius: "12px" }}></iframe>
+        <iframe src="https://www.wildroseplacement.com" title="Wildrose Website" style={{ width: "97.5%", height: "97.8%", borderRadius: "5px" }}></iframe>
           </div>
        
-        <div className="resumecard"><iframe src="https://www.solvaxion.com" title="Solvaxion Website" style={{ width: "97.5%", height: "97.8%", borderRadius: "12px" }}></iframe></div>
-        <div className="resumecard"><iframe src="https://main.d1zznrc3rjdw3p.amplifyapp.com/" title="Wildrose Website" style={{ width: "97.5%", height: "97.8%", borderRadius: "12px" }}></iframe></div>
+        <div className="resumecard"><iframe src="https://www.solvaxion.com" title="Solvaxion Website" style={{ width: "97.5%", height: "97.8%", borderRadius: "5px" }}></iframe></div>
+        <div className="resumecard"><iframe src="https://main.d1zznrc3rjdw3p.amplifyapp.com/" title="Wildrose Website" style={{ width: "97.5%", height: "97.8%", borderRadius: "5px" }}></iframe></div>
       </div>
     </div>
   );
