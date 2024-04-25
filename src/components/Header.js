@@ -1,5 +1,6 @@
 import React from 'react'
 import { rufustech1 } from '../assets'
+import { Link } from 'react-router-dom'
 
 function Header() {
   return (
@@ -29,10 +30,27 @@ function Header() {
                     <a href="/about" class="text-[#0B123F]  hover:no-underline">About</a>
                 </li> */}
                 <li>
-                    <a href="/blog" class="text-[#0B123F]  hover:no-underline">Tech Blog</a>
+                            <Link
+                                to="/blog"
+                                className="text-[#0B123F]  hover:no-underline"
+                            >
+                                Tech Blog
+                            </Link>
+
+                
+                
+                    {/* <a href="/blog" class="text-[#0B123F]  hover:no-underline">Tech Blog</a> */}
                 </li>
                 <li>
-                    <a href="/contact" class="text-[#0B123F] hover:no-underline">Contact</a>
+                    
+                            <Link
+                                to="/contact"
+                                className="text-[#0B123F]  hover:no-underline"
+                            >
+                                contact
+                            </Link>
+                
+                    {/* <a href="/contact" class="text-[#0B123F] hover:no-underline">Contact</a> */}
                 </li>
             </ul>
         </div>
