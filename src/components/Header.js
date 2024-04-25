@@ -25,11 +25,11 @@ function Header() {
                 <li>
                     <a href="/" className="text-[#0B123F]  hover:no-underline" aria-current="page">Home</a>
                 </li>
-                <li>
+                {/* <li>
                     <a href="/about" class="text-[#0B123F]  hover:no-underline">About</a>
-                </li>
+                </li> */}
                 <li>
-                    <a href="/team" class="text-[#0B123F]  hover:no-underline">Team</a>
+                    <a href="/blog" class="text-[#0B123F]  hover:no-underline">Tech Blog</a>
                 </li>
                 <li>
                     <a href="/contact" class="text-[#0B123F] hover:no-underline">Contact</a>

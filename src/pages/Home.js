@@ -12,7 +12,7 @@ import Resume from '../components/Resume'
 function Home() {
   return (
     <div >
-      <Header />
+    
       {/* <Hero /> */}
       <Heros />
       <Services />
@@ -20,7 +20,7 @@ function Home() {
       <Pricing />
       <Resume />
       <Partner />
-      <Footer />
+      
     </div>
   )
 }

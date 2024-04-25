@@ -2,7 +2,7 @@ import React from 'react'
 
 function Pricing() {
   return (
-    <div className='mb-0'>
+    <div className='pb-0'>
       
       <section class="relative flex flex-col items-center justify-center overflow-hidden bg-gray-950">
                 <svg class="absolute w-full h-full lg:w-auto lg:h-auto" viewBox="0 0 1681 1268" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,7 +73,7 @@ function Pricing() {
                     </radialGradient>
                   </defs>
                 </svg>
-                <div class="relative items-center px-8 py-12 mx-auto md:px-12 lg:px-32 max-w-7xl">
+                <div class="relative items-center  mb-16 px-8 py-12 mx-auto md:px-12 lg:px-32 max-w-7xl">
                   <div class="max-w-4xl mx-auto">
                     <span class="text-white"> Pricing</span>
                     <h2 class="mt-6 text-3xl font-medium tracking-tight text-white lg:text-4xl">
@@ -88,7 +88,9 @@ function Pricing() {
                           Hourly Basis
                         </p>
                         <p>
-                          <span class="text-2xl tracking-tight text-white"> $50 hour</span>
+                          <span class="text-2xl tracking-tight text-white">
+                            {/* $50 hour */}
+                            </span>
                         </p>
                       </div>
                       <p class="mt-8 text-xs text-white/80">
@@ -162,7 +164,9 @@ function Pricing() {
                           Freelancing
                         </p>
                         <p>
-                          <span class="text-2xl tracking-tight text-white"> $400 /week</span>
+                          <span class="text-2xl tracking-tight text-white">
+                            {/* $400 /week */}
+                            </span>
                         </p>
                       </div>
                       <p class="mt-8 text-xs text-white/80">
@@ -236,8 +240,10 @@ function Pricing() {
                           Fulltime
                         </p>
                         <p class="text-white">
-                          <span class="text-2xl tracking-tight"> $2250</span>
-                          <span class="text-base font-medium"> /mo</span>
+                          <span class="text-2xl tracking-tight"> 
+                          {/* $2250 */}
+                          </span>
+                          <span class="text-base font-medium"> </span>
                         </p>
                       </div>
                       <p class="mt-8 text-xs text-white/80">
