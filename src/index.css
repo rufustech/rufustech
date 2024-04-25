@@ -46,3 +46,62 @@ padding-left: 60px;
     background-size: cover;
     overflow: hidden;
 }
+
+/* ################### Resume section ################################ */
+
+.resumecard {
+  position: relative;
+  width: 300px;
+  height: 450px;
+  background: #354deb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+  z-index: 1; /* Ensure the card container has a higher z-index */
+}
+
+.resumecard iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: 2; /* Ensure the iframe has an even higher z-index */
+}
+
+.resumecard h2 {
+  z-index: 3; /* Ensure the content inside the card has an even higher z-index */
+  color: white;
+  font-size: 2em;
+}
+
+.resumecard::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 255, 255));
+  height: 130%;
+  animation: rotBGimg 40s linear infinite;
+  transition: all 0.2s linear;
+  z-index: -1; /* Ensure the background has a lower z-index */
+}
+
+@keyframes rotBGimg {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.resumecard::after {
+  content: '';
+  position: absolute;
+  background: white;
+  inset: 5px;
+  border-radius: 20px;
+  z-index: -1; /* Ensure the border has a lower z-index */
+}

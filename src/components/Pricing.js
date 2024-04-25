@@ -81,7 +81,7 @@ function Pricing() {
                         </span>
                     </h2>
                   </div>
-                  <div class="grid grid-cols-1 gap-2 mt-12 lg:grid-cols-3">
+                  <div class="grid grid-cols-1 gap-4 mt-12 lg:grid-cols-3">
                     <div class="flex flex-col p-8 shadow-2xl rounded-3xl bg-black/20 backdrop-blur-3xl shadow-gray-900/50">
                       <div class="flex items-center justify-between gap-3">
                         <p class="text-xl font-medium tracking-tight text-white">
