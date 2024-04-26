@@ -34,7 +34,7 @@ function Header() {
                                 to="/blog"
                                 className="text-[#0B123F]  hover:no-underline"
                             >
-                                Tech Blog
+                                Blog
                             </Link>
 
                 
@@ -47,7 +47,7 @@ function Header() {
                                 to="/contact"
                                 className="text-[#0B123F]  hover:no-underline"
                             >
-                                contact
+                                Contact
                             </Link>
                 
                     {/* <a href="/contact" class="text-[#0B123F] hover:no-underline">Contact</a> */}

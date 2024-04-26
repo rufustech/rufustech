@@ -8,8 +8,8 @@ function Resume() {
       <p style={{fontSize: "32px"}} class=" w-full leading-relaxed text-gray-500">My recent Projects</p>
     </div>
       <div className="grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 justify-center items-center gap-2">
-        <div className="resumecard">
-          <iframe src="https://www.magetsi.co.zw" title="Magetsi Website" style={{ width: "97.5%", height: "97.8%", borderRadius: "5px" }}></iframe>
+        <div style={{overflow: "hidden"}} className="resumecard">
+          <iframe src="https://www.magetsi.co.zw" title="Magetsi Website" style={{ width: "97.3%", height: "97.5%", borderRadius: "5px" }}></iframe>
           <h2></h2>
         </div>
         <div className="resumecard">

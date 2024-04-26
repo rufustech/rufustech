@@ -80,7 +80,7 @@ padding-left: 60px;
   content: '';
   position: absolute;
   width: 100px;
-  background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 255, 255));
+  background-image: linear-gradient(180deg, rgb(236, 2, 61), rgb(255, 255, 255));
   height: 130%;
   animation: rotBGimg 40s linear infinite;
   transition: all 0.2s linear;
