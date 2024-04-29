@@ -2,7 +2,7 @@ import React from 'react';
 
 function Resume() {
   return (
-    <div className='container px-5 py-20 mx-auto'>
+    <div className='container px- py-10 mx-auto'>
        <div class="flex flex-wrap w-full mb-20 flex-col items-center text-center">
       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Portfolio</h1>
       <p style={{fontSize: "32px"}} class=" w-full leading-relaxed text-gray-500">My recent Projects</p>
