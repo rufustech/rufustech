@@ -8,14 +8,14 @@ function Header() {
       
 
 <nav class="bg-[#0B123F] p-0 m-0 ">
-    <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+    <div class="flex flex-wrap items-center justify-between  mx-auto max-w-screen-xl">
         <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src={rufustech1} class="h-20" alt="RufusTech Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
         </a>
-        <div class="flex items-center  space-x-6 rtl:space-x-reverse">
-            <a href="tel:5541251234" class="text-sm  text-gray-500 dark:text-white hover:underline">(403) 796-2192</a>
-            <a href="#" class="text-lg  text-blue-600 dark:text-blue-500 hover:underline">Login</a>
+        <div class="flex items-center justify-items-end  space-x-6">
+            <a href="tel:5541251234" class="text-sm  text-gray-500 dark:text-white hover:text-white hover:scale-125 hover:no-underline">(403) 796-2192</a>
+            <a href="/login" class="text-lg px-5 text-yellow-600 dark:text-blue-500 hover:text-white hover:scale-125 hover:no-underline">Login</a>
         </div>
     </div>
 </nav>
