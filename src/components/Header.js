@@ -14,8 +14,8 @@ function Header() {
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
         </a>
         <div class="flex items-center justify-items-end  space-x-6">
-            <a href="tel:5541251234" class="text-sm  text-gray-500 dark:text-white hover:text-white hover:scale-125 hover:no-underline">(403) 796-2192</a>
-            <a href="/login" class="text-lg px-5 text-yellow-600 dark:text-blue-500 hover:text-white hover:scale-125 hover:no-underline">Login</a>
+            <a href="tel:4037962192" class="text-lg  text-gray-500 dark:text-white hover:text-white hover:scale-125 hover:no-underline">(403) 796-2192</a>
+            <a href="/login" class="text-xl px-5 text-white dark:text-white hover:text-white hover:scale-125 hover:no-underline">Login</a>
         </div>
     </div>
 </nav>

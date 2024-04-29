@@ -81,8 +81,8 @@ const Contact = () => {
                     <h4 className="mb-1 text-xl font-bold text-[#0B123F]">
                       Phone Number
                     </h4>
-                    <p className="text-red-900 text-body-color dark:text-dark-6">
-                    {/* +1 587 398 2542 */}
+                    <p className="text-black text-body-color dark:text-dark-6">
+                    +1 403 796 2192
                     </p>
                   </div>
                 </div>
@@ -107,7 +107,7 @@ const Contact = () => {
                       Email Address
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
-                    info@wildroseplacement.ca
+                      info@rufarodev.com
                     </p>
                   </div>
                 </div>
@@ -116,7 +116,7 @@ const Contact = () => {
             <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
               <div className="bg-gray-100 relative rounded-lg p-8 shadow-lg dark:bg-dark-2 sm:p-12">
                 <form className="">
-                    <img src={rufustech1} alt="" />
+                    <img className="rounded-md shadow-md border shadow-red-700" src={rufustech1} alt="" />
                   <ContactInputBox
                     type="text"
                     name="name"
@@ -180,7 +180,7 @@ const ContactTextArea = ({ row, placeholder, name, defaultValue }) => {
 const ContactInputBox = ({ type, placeholder, name }) => {
   return (
     <>
-      <div className="mb-6">
+      <div className="mb-6 pt-2">
         <input
           type={type}
           placeholder={placeholder}

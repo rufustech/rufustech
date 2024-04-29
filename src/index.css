@@ -105,3 +105,12 @@ padding-left: 60px;
   border-radius: 20px;
   z-index: -1; /* Ensure the border has a lower z-index */
 }
+
+
+/* ####################### LOGIN  ####################### */
+
+.loginbanner {
+  background: url( 'https://img.freepik.com/free-photo/top-view-lock-keyboard-with-plant-notebook_23-2148578065.jpg?t=st=1714415948~exp=1714419548~hmac=784ae77f2d624dfebdb5397772dc6d7f1d3d112f27f972cf09ee5123d28998e3&w=1380' );
+  background-repeat: no-repeat;
+  background-size: cover;       
+}

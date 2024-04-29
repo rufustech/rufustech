@@ -13,7 +13,7 @@ function Heros() {
         />
         <div className="absolute inset-0 flex justify-center items-center text-center">
           <div
-            style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
             className="relative block rounded-lg px-12 py-20 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.7),0_10px_20px_-2px_rgba(0,0,0,0.5)] backdrop-blur-[0px] shadow-black/40 md:px-12 lg:-mr-14"
           >
             <h4 className="mt-2 mb-8 text-2xl font-bold tracking-tight md:text-3xl xl:text-3xl text-white">
@@ -22,7 +22,7 @@ function Heros() {
             <a href='/contact'>
               <button
                 type="button"
-                className="inline-block rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                className="animate-bounce inline-block rounded bg-primary px-16 pb-3.5 pt-3 text-xl font-medium uppercase leading-normal text-white shadow-[0_14px_9px_-14px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.7),0_4px_18px_0_rgba(59,113,202,0.5)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.8)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.7),0_4px_18px_0_rgba(59,113,202,0.8)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.5),0_4px_18px_0_rgba(59,113,202,0.4)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.5),0_4px_18px_0_rgba(59,113,202,0.4)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.7),0_4px_18px_0_rgba(59,113,202,0.5)] hover:scale-125"
                 data-te-ripple-init
                 data-te-ripple-color="light"
               >
