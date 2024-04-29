@@ -17,6 +17,7 @@ import whiteoffice from './images/whiteoffice.jpg'
 import darkoffice from './images/darkoffice.jpg'
 import devops from './images/deveops.jpg'
 import cloud from './images/cloud.avif'
+import background from './images/background.jpg' 
 
 export {
     rufustech1,
@@ -27,6 +28,7 @@ export {
     mamoyo,
     solvaxion,
     wildrose,
+    background,
     wildroseplacement,
     aiel,
     aws,
