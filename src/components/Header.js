@@ -15,7 +15,13 @@ function Header() {
         </a>
         <div class="flex items-center justify-items-end  space-x-6">
             <a href="tel:4037962192" class="text-lg  text-gray-500 dark:text-white hover:text-white hover:scale-125 hover:no-underline">(403) 796-2192</a>
-            <a href="/login" class="text-xl px-5 text-white dark:text-white hover:text-white hover:scale-125 hover:no-underline">Login</a>
+            <Link
+                                to="/login"
+                                className=" text-xl px-5 text-white dark:text-white hover:text-white hover:scale-125 hover:no-underline"
+                            >
+                               Login
+                            </Link>
+            {/* <a href="/login" class="">Login</a> */}
         </div>
     </div>
 </nav>
