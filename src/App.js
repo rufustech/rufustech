@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
+import { useEffect } from 'react';
 
 function App() {
   return (
@@ -22,11 +23,12 @@ function AppContent() {
   // Check if the current location is the login page
   const isLoginPage = location.pathname === '/login';
 
-  // Redirect to URL without trailing slash
-  if (location.pathname !== '/' && location.pathname.endsWith('/')) {
-    navigate(location.pathname.slice(0, -1));
-    return null; // Prevent rendering until redirection completes
-  }
+  // Redirect to URL without trailing slash if necessary
+  useEffect(() => {
+    if (location.pathname !== '/' && location.pathname.endsWith('/')) {
+      navigate(location.pathname.slice(0, -1));
+    }
+  }, [location.pathname, navigate]);
 
   // Render header conditionally
   const renderHeader = () => {
