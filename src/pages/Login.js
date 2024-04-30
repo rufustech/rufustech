@@ -43,7 +43,7 @@ function Login() {
                     SIGN IN
                 </button>
               </div>
-              <Link style={{fontSize: "30px", color: "Red" }} className='hover:no-underline text-md md:text-base' to="/signup">
+              <Link style={{fontSize: "30px", color: "Red" }} className='hover:no-underline text-md md:text-base' to="/register">
                 <span style={{fontSize: "16px", color: "white", paddingRight: "110px" }} className="hover:no-underline hover:scale-110">Need an account </span> Register
               </Link>
             </div>

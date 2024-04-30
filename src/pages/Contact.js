@@ -1,12 +1,15 @@
 import React from "react";
 import { rufustech1 } from "../assets";
 import Contactstylespan from "../components/Contactstylespan";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 // import { wildroselogo1, wildroselogo2 } from "../assets";
 
 const Contact = () => {
   return (
     <>
+    <Header />
     <div className="container px-16 py-8 mx-auto">
       <section className="relative z-10 overflow-hidden bg-white py-4 dark:bg-dark lg:py-[120px]">
         <div className="">
@@ -154,7 +157,7 @@ const Contact = () => {
         </div>
       </section>
       </div>
-     
+      <Footer />
     </>
   );
 };
@@ -188,7 +191,7 @@ const ContactInputBox = ({ type, placeholder, name }) => {
           className="w-full rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
         />
       </div>
-    
+   
     </>
   );
 };

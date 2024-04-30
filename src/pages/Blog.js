@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import Pagination from '../components/Blog/Pagination';
 import BlogComponent from '../components/Blog/BlogComponent';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function Blog() {
 
@@ -31,6 +33,8 @@ function Blog() {
     const nPages = Math.ceil(data.length / recordsPerPage)
 
     return (
+        <>
+        <Header />
         <div className='container mt-5'>
             <BlogComponent data={currentRecords}/>
             <Pagination
@@ -39,6 +43,8 @@ function Blog() {
                 setCurrentPage={setCurrentPage}
             />
         </div>
+        <Footer />       
+         </>
     );
 }
 
