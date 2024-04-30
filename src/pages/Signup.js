@@ -1,24 +1,29 @@
 import React from 'react'
+import {  rufustech1, whiteoffice } from '../assets'
 
 function Signup() {
   return (
-    <div className="h-[100vh] items-center flex justify-center px-5 lg:px-0">
-      <div className="max-w-screen-xl bg-white border shadow sm:rounded-lg flex justify-center flex-1">
+    <div className="h-[100vh] items-center flex justify-center px-5 lg:px-0 bg-[#0B123F]">
+       
+      <div  className="max-w-screen-xl bg-white border shadow sm:rounded-lg flex justify-center flex-1">
+        
         <div className="flex-1 bg-blue-900 text-center hidden md:flex">
+            
           <div
-            className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
+          
+            className=" w-full bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url(https://www.tailwindtap.com/assets/common/marketing.svg)`,
+              backgroundImage: `url( ${whiteoffice} )`,
             }}
-          ></div>
+          > <a href='/' className=""><img className="rounded-md shadow-lg  shadow-gray-700" src={rufustech1} alt="" /></a></div>
         </div>
         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
           <div className=" flex flex-col items-center">
             <div className="text-center">
               <h1 className="text-2xl xl:text-4xl font-extrabold text-blue-900">
-                Student Sign up
+                Sign up
               </h1>
-              <p className="text-[12px] text-gray-500">
+              <p className="text-[12px] text-gray-500 pt-4">
                 Hey enter your details to create your account
               </p>
             </div>
@@ -61,8 +66,8 @@ function Signup() {
                 </button>
                 <p className="mt-6 text-xs text-gray-600 text-center">
                   Already have an account?{" "}
-                  <a href="">
-                    <span className="text-blue-900 font-semibold">Sign in</span>
+                  <a href="/login">
+                    <span className="text-blue-900 font-semibold">Login</span>
                   </a>
                 </p>
               </div>
