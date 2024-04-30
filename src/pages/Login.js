@@ -7,7 +7,7 @@ function Login() {
     <div>
       <div className='grid grid-cols-12'>
         <div className="col-span-12 md:col-span-4 text-white font-sans font-bold bg-[#0B123F] min-h-screen md:pl-0">
-          <div className="grid grid-rows-6 grid-flow-col min-h-screen items-center justify-items-start">
+          <div className="grid grid-rows-6 grid-flow-col min-h-screen items-center justify-items-start p-4">
             {/* Hide the image on tablets and smaller screens */}
             <a href='/' className=""><img className="rounded-md shadow-lg  shadow-gray-700" src={rufustech1} alt="" /></a>
             <div className="row-span-4 row-start-2 text-4xl">
@@ -43,8 +43,8 @@ function Login() {
                     SIGN IN
                 </button>
               </div>
-              <Link style={{fontSize: "18px", color: "Red" }} className='hover:no-underline text-md md:text-base' to="/signup">
-                <span style={{fontSize: "16px", color: "white", paddingRight: "50px" }} className="hover:no-underline hover:scale-110">Need an account </span> Register
+              <Link style={{fontSize: "30px", color: "Red" }} className='hover:no-underline text-md md:text-base' to="/signup">
+                <span style={{fontSize: "16px", color: "white", paddingRight: "110px" }} className="hover:no-underline hover:scale-110">Need an account </span> Register
               </Link>
             </div>
             {/* Text */}
