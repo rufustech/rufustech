@@ -16,7 +16,7 @@ import laptopdev from './images/laptopdev.jpg'
 import whiteoffice from './images/whiteoffice.jpg'
 import darkoffice from './images/darkoffice.jpg'
 import devops from './images/deveops.jpg'
-import cloud from './images/cloud.avif'
+import cloud from './images/cloud.png'
 import background from './images/background.jpg' 
 
 export {
