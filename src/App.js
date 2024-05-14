@@ -1,3 +1,4 @@
+import ReactGA from 'react-ga4';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
@@ -9,6 +10,7 @@ import Activation from './pages/Activation';
 import Reset from './pages/Reset';
 
 function App() {
+  ReactGA.initialize('GTM-WW7PWSFF');
   return (
     <div >
      
