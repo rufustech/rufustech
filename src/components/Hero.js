@@ -480,10 +480,8 @@ export default function Home() {
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-28">
           <div className="max-w-3xl">
-            
             <Kicker icon={Sparkles}>
               Systems Engineer • Full‑Stack Developer • Platform Architect •
-              
             </Kicker>
             <h1 className="mt-4 text-4xl md:text-6xl font-bold tracking-tight text-white">
               Building reliable, revenue‑driven platforms — end to end.
@@ -778,7 +776,7 @@ export default function Home() {
         kicker="Breadth × depth"
       >
         <div className="grid lg:grid-cols-2 gap-8">
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-3 ">
+          <div className="rounded-2xl border border-zinc-300 bg-white/80 p-3 ">
             <div className="flex items-center gap-2 text-sm text-zinc-300">
               <ChartBar size={16} /> Tooling overview
             </div>
