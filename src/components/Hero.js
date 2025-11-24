@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, createContext, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -16,10 +16,12 @@ import {
   Linkedin,
   Mail,
   MapPin,
+  Moon,
   Phone,
   Rocket,
   ShieldCheck,
   Sparkles,
+  Sun,
   Timer,
   Wrench,
 } from "lucide-react";
@@ -50,24 +52,41 @@ import {
    - Uses only standard libs so you can drop into any CRA/Vite/Next project
    ========================================================= */
 
+// ---------- Theme Context ----------
+const ThemeContext = createContext();
+const useTheme = () => useContext(ThemeContext);
+
 // ---------- Helpers ----------
 const cx = (...cls) => cls.filter(Boolean).join(" ");
 const open = (url) => window.open(url, "_blank", "noopener,noreferrer");
-const Section = ({ id, title, kicker, children }) => (
-  <section id={id} className="scroll-mt-24 py-20 md:py-28">
-    <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-      {kicker && (
-        <p className="text-xs uppercase tracking-widest text-zinc-400 mb-2">
-          {kicker}
-        </p>
-      )}
-      <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white mb-6">
-        {title}
-      </h2>
-      {children}
-    </div>
-  </section>
-);
+const Section = ({ id, title, kicker, children }) => {
+  const { theme } = useTheme();
+  return (
+    <section id={id} className="scroll-mt-24 py-20 md:py-28">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        {kicker && (
+          <p
+            className={cx(
+              "text-xs uppercase tracking-widest mb-2",
+              theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+            )}
+          >
+            {kicker}
+          </p>
+        )}
+        <h2
+          className={cx(
+            "text-2xl md:text-4xl font-bold tracking-tight mb-6",
+            theme === "dark" ? "text-white" : "text-zinc-900"
+          )}
+        >
+          {title}
+        </h2>
+        {children}
+      </div>
+    </section>
+  );
+};
 
 // ---------- Hero images (random) ----------
 const heroImages = [
@@ -266,51 +285,119 @@ const toolTags = [
 
 // ---------- Subcomponents ----------
 function Kicker({ icon: Icon, children }) {
+  const { theme } = useTheme();
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1 text-xs text-zinc-300">
+    <div
+      className={cx(
+        "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs",
+        theme === "dark"
+          ? "border-zinc-800 bg-zinc-900/50 text-zinc-300"
+          : "border-zinc-300 bg-white/80 text-zinc-700"
+      )}
+    >
       {Icon && <Icon size={14} className="opacity-80" />} {children}
     </div>
   );
 }
 
 function Stat({ label, value, icon: Icon }) {
+  const { theme } = useTheme();
   return (
-    <div className="flex items-center gap-3 rounded-2xl border border-zinc-800/80 bg-gradient-to-b from-zinc-950 to-zinc-900 p-4 shadow-lg">
-      <div className="rounded-xl bg-zinc-800/50 p-2">
-        <Icon size={20} />
+    <div
+      className={cx(
+        "flex items-center gap-3 rounded-2xl border p-4 shadow-lg",
+        theme === "dark"
+          ? "border-zinc-800/80 bg-gradient-to-b from-zinc-950 to-zinc-900"
+          : "border-zinc-200 bg-gradient-to-b from-white to-zinc-50"
+      )}
+    >
+      <div
+        className={cx(
+          "rounded-xl p-2",
+          theme === "dark" ? "bg-zinc-800/50" : "bg-zinc-100"
+        )}
+      >
+        <Icon
+          size={20}
+          className={theme === "dark" ? "text-white" : "text-zinc-700"}
+        />
       </div>
       <div>
-        <div className="text-xl font-bold text-white">{value}</div>
-        <div className="text-xs text-zinc-400">{label}</div>
+        <div
+          className={cx(
+            "text-xl font-bold",
+            theme === "dark" ? "text-white" : "text-zinc-900"
+          )}
+        >
+          {value}
+        </div>
+        <div
+          className={cx(
+            "text-xs",
+            theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+          )}
+        >
+          {label}
+        </div>
       </div>
     </div>
   );
 }
 
 function ProjectCard({ p, onOpen }) {
+  const { theme } = useTheme();
   return (
     <motion.button
       onClick={() => onOpen(p)}
       whileHover={{ y: -4 }}
-      className="group text-left rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 shadow-lg hover:border-zinc-700/80 focus:outline-none"
+      className={cx(
+        "group text-left rounded-2xl border p-5 shadow-lg focus:outline-none",
+        theme === "dark"
+          ? "border-zinc-800 bg-zinc-900/40 hover:border-zinc-700/80"
+          : "border-zinc-200 bg-white hover:border-zinc-300"
+      )}
     >
       <div className="flex items-center justify-between gap-4">
-        <h4 className="text-lg font-semibold text-white">{p.name}</h4>
-        <ArrowRight className="shrink-0 opacity-60 group-hover:translate-x-1 transition" />
+        <h4
+          className={cx(
+            "text-lg font-semibold",
+            theme === "dark" ? "text-white" : "text-zinc-900"
+          )}
+        >
+          {p.name}
+        </h4>
+        <ArrowRight
+          className={cx(
+            "shrink-0 opacity-60 group-hover:translate-x-1 transition",
+            theme === "dark" ? "text-white" : "text-zinc-700"
+          )}
+        />
       </div>
-      <p className="mt-2 text-sm text-zinc-300/90">{p.summary}</p>
+      <p
+        className={cx(
+          "mt-2 text-sm",
+          theme === "dark" ? "text-zinc-300/90" : "text-zinc-600"
+        )}
+      >
+        {p.summary}
+      </p>
       <div className="mt-4 flex flex-wrap gap-2">
         {p.stack?.map((t) => (
           <span
             key={t}
-            className="rounded-full border border-zinc-800/70 bg-zinc-800/30 px-2 py-0.5 text-[11px] text-zinc-300"
+            className={cx(
+              "rounded-full border px-2 py-0.5 text-[11px]",
+              theme === "dark"
+                ? "border-zinc-800/70 bg-zinc-800/30 text-zinc-300"
+                : "border-zinc-300 bg-zinc-100 text-zinc-700"
+            )}
           >
             {t}
           </span>
         ))}
       </div>
       {p.featured && (
-        <div className="mt-4 inline-flex items-center gap-1 text-[11px] text-emerald-400">
+        <div className="mt-4 inline-flex items-center gap-1 text-[11px] text-emerald-500">
           <BadgeCheck size={14} /> Featured
         </div>
       )}
@@ -319,18 +406,45 @@ function ProjectCard({ p, onOpen }) {
 }
 
 function TimelineItem({ v }) {
+  const { theme } = useTheme();
   return (
     <div className="relative pl-8">
-      <div className="absolute left-1.5 top-1 h-2 w-2 rounded-full bg-emerald-400" />
-      <div className="text-sm text-emerald-400">{v.period}</div>
-      <div className="text-white font-semibold">{v.title}</div>
-      <div className="text-xs text-zinc-400">{v.role}</div>
-      <p className="mt-2 text-sm text-zinc-300/90">{v.blurb}</p>
+      <div className="absolute left-1.5 top-1 h-2 w-2 rounded-full bg-emerald-500" />
+      <div className="text-sm text-emerald-500">{v.period}</div>
+      <div
+        className={cx(
+          "font-semibold",
+          theme === "dark" ? "text-white" : "text-zinc-900"
+        )}
+      >
+        {v.title}
+      </div>
+      <div
+        className={cx(
+          "text-xs",
+          theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+        )}
+      >
+        {v.role}
+      </div>
+      <p
+        className={cx(
+          "mt-2 text-sm",
+          theme === "dark" ? "text-zinc-300/90" : "text-zinc-600"
+        )}
+      >
+        {v.blurb}
+      </p>
       <div className="mt-2 flex flex-wrap gap-2">
         {v.tags?.map((t) => (
           <span
             key={t}
-            className="rounded-full border border-zinc-800/70 bg-zinc-800/30 px-2 py-0.5 text-[11px] text-zinc-300"
+            className={cx(
+              "rounded-full border px-2 py-0.5 text-[11px]",
+              theme === "dark"
+                ? "border-zinc-800/70 bg-zinc-800/30 text-zinc-300"
+                : "border-zinc-300 bg-zinc-100 text-zinc-700"
+            )}
           >
             {t}
           </span>
@@ -339,7 +453,12 @@ function TimelineItem({ v }) {
       {v.links?.live && (
         <button
           onClick={() => open(v.links.live)}
-          className="mt-3 inline-flex items-center gap-2 text-sm text-zinc-100 hover:text-white"
+          className={cx(
+            "mt-3 inline-flex items-center gap-2 text-sm",
+            theme === "dark"
+              ? "text-zinc-100 hover:text-white"
+              : "text-zinc-700 hover:text-zinc-900"
+          )}
         >
           <ExternalLink size={16} /> Visit
         </button>
@@ -350,6 +469,10 @@ function TimelineItem({ v }) {
 
 // ---------- Main Component ----------
 export default function Home() {
+  const [theme, setTheme] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    return saved || "dark";
+  });
   const [active, setActive] = useState("home");
   const [query, setQuery] = useState("");
   const [tag, setTag] = useState("All");
@@ -362,6 +485,15 @@ export default function Home() {
     { id: "skills", label: "Skills" },
     { id: "contact", label: "Contact" },
   ];
+
+  // Theme persistence
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
 
   // Pick a random hero background on mount
   const heroBg = useMemo(
@@ -383,6 +515,7 @@ export default function Home() {
       if (el) obs.observe(el);
     });
     return () => obs.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const allTags = useMemo(
@@ -425,490 +558,797 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-zinc-100">
-      {/* ===== Sticky Nav ===== */}
-      <div className="fixed inset-x-0 top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-black/40 border-b border-zinc-900">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-14">
-          <button
-            onClick={() => scrollTo("home")}
-            className="font-bold tracking-tight text-xl text-emerald-400"
-          >
-            Rufaro<span className="text-white text-md">Dev</span>
-          </button>
-          <nav className="hidden md:flex items-center gap-1">
-            {sections.map((s) => (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <div
+        className={cx(
+          "min-h-screen transition-colors duration-300",
+          theme === "dark"
+            ? "bg-black text-zinc-100"
+            : "bg-zinc-50 text-zinc-900"
+        )}
+      >
+        {/* ===== Sticky Nav ===== */}
+        <div
+          className={cx(
+            "fixed inset-x-0 top-0 z-40 backdrop-blur border-b transition-colors",
+            theme === "dark"
+              ? "supports-[backdrop-filter]:bg-black/40 border-zinc-900"
+              : "supports-[backdrop-filter]:bg-white/40 border-zinc-200"
+          )}
+        >
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-14">
+            <button
+              onClick={() => scrollTo("home")}
+              className="font-bold tracking-tight text-xl text-emerald-500"
+            >
+              Rufaro
+              <span
+                className={theme === "dark" ? "text-white" : "text-zinc-900"}
+              >
+                Dev
+              </span>
+            </button>
+            <nav className="hidden md:flex items-center gap-1">
+              {sections.map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => scrollTo(s.id)}
+                  className={cx(
+                    "rounded-full px-3 py-1 text-sm transition",
+                    active === s.id
+                      ? theme === "dark"
+                        ? "bg-zinc-800 text-white"
+                        : "bg-zinc-200 text-zinc-900"
+                      : theme === "dark"
+                      ? "text-zinc-300 hover:text-white"
+                      : "text-zinc-600 hover:text-zinc-900"
+                  )}
+                >
+                  {s.label}
+                </button>
+              ))}
+            </nav>
+            <div className="flex items-center gap-3">
               <button
-                key={s.id}
-                onClick={() => scrollTo(s.id)}
+                onClick={toggleTheme}
                 className={cx(
-                  "rounded-full px-3 py-1 text-sm transition",
-                  active === s.id
-                    ? "bg-zinc-800 text-white"
-                    : "text-zinc-300 hover:text-white"
+                  "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm transition-all hover:scale-105",
+                  theme === "dark"
+                    ? "border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-zinc-300"
+                    : "border-zinc-300 bg-white hover:bg-zinc-100 text-zinc-700"
+                )}
+                aria-label="Toggle theme"
+              >
+                {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+              </button>
+              <button
+                onClick={() => open("mailto:rufaro@rufarodev.com")}
+                className={cx(
+                  "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm",
+                  theme === "dark"
+                    ? "border-zinc-800 bg-zinc-900 hover:bg-zinc-800"
+                    : "border-zinc-300 bg-white hover:bg-zinc-100"
                 )}
               >
-                {s.label}
+                <Mail size={16} /> Contact
               </button>
-            ))}
-          </nav>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => open("mailto:rufaro@rufarodev.com")}
-              className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-sm hover:bg-zinc-800"
-            >
-              <Mail size={16} /> Contact
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* ===== Hero ===== */}
-      <section
-        id="home"
-        className="relative flex min-h-[72vh] items-center overflow-hidden bg-[radial-gradient(60rem_60rem_at_120%_-20%,rgba(16,185,129,0.16),transparent_40%),radial-gradient(40rem_40rem_at_-20%_10%,rgba(59,130,246,0.12),transparent_40%)]"
-      >
-        {/* Backdrop image shade */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${heroBg})`,
-            filter: "grayscale(40%) contrast(1.1)",
-          }}
-        />
-        <div aria-hidden className="absolute inset-0 bg-black/60" />
-
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-28">
-          <div className="max-w-3xl">
-            <Kicker icon={Sparkles}>
-              Systems Engineer • Full‑Stack Developer • Platform Architect •
-            </Kicker>
-            <h1 className="mt-4 text-4xl md:text-6xl font-bold tracking-tight text-white">
-              Building reliable, revenue‑driven platforms — end to end.
-            </h1>
-            <p className="mt-4 text-lg text-zinc-100">
-              I design, ship, and operate production software — React/Next.js
-              frontends, Node/Django backends, and AWS‑powered infrastructure.
-              From fintech and compliance to e‑commerce and research portals, I
-              turn ideas into dependable products.
-            </p>
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <button
-                onClick={() => scrollTo("projects")}
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-3 font-semibold text-black hover:bg-emerald-400 hover:shadow-md hover:shadow-white"
-              >
-                Explore work <ArrowRight size={20} />
-              </button>
-              <button
-                onClick={() => open("/Rufaro_Mucheri_Resume.pdf")}
-                className="inline-flex items-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3 font-semibold text-white hover:bg-zinc-800 hover:shadow-md hover:shadow-white"
-              >
-                Download résumé
-              </button>
-            </div>
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {stats.map((s) => (
-                <Stat key={s.label} {...s} />
-              ))}
             </div>
           </div>
         </div>
-      </section>
 
-      {/* ===== About ===== */}
-      <Section id="about" title="About Rufaro" kicker="Profile">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="md:col-span-2">
-            <div className="prose prose-invert max-w-none">
-              <p>
-                Calgary‑based Systems Infrastructure Engineer and full‑stack
-                builder with a Computer Science degree and hands‑on AWS
-                experience (Amplify, S3, CloudFront, EC2, SES, SNS). I craft
-                scalable platforms with clear UX, strong security, and practical
-                monetization. Recent work spans multi‑tenant SaaS, payments,
-                compliance, scheduling, and knowledge portals.
+        {/* ===== Hero ===== */}
+        <section
+          id="home"
+          className={cx(
+            "relative flex min-h-[72vh] items-center overflow-hidden",
+            theme === "dark"
+              ? "bg-[radial-gradient(60rem_60rem_at_120%_-20%,rgba(16,185,129,0.16),transparent_40%),radial-gradient(40rem_40rem_at_-20%_10%,rgba(59,130,246,0.12),transparent_40%)]"
+              : "bg-[radial-gradient(60rem_60rem_at_120%_-20%,rgba(16,185,129,0.12),transparent_40%),radial-gradient(40rem_40rem_at_-20%_10%,rgba(59,130,246,0.08),transparent_40%)]"
+          )}
+        >
+          {/* Backdrop image shade */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${heroBg})`,
+              filter:
+                theme === "dark"
+                  ? "grayscale(40%) contrast(1.1)"
+                  : "grayscale(20%) contrast(1.05) brightness(1.1)",
+            }}
+          />
+          <div
+            aria-hidden
+            className={cx(
+              "absolute inset-0",
+              theme === "dark" ? "bg-black/60" : "bg-white/70"
+            )}
+          />
+
+          <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-28">
+            <div className="max-w-3xl">
+              <Kicker icon={Sparkles}>
+                Systems Engineer • Full‑Stack Developer • Platform Architect •
+              </Kicker>
+              <h1
+                className={cx(
+                  "mt-4 text-4xl md:text-6xl font-bold tracking-tight",
+                  theme === "dark" ? "text-white" : "text-zinc-900"
+                )}
+              >
+                Building reliable, revenue‑driven platforms — end to end.
+              </h1>
+              <p
+                className={cx(
+                  "mt-4 text-lg",
+                  theme === "dark" ? "text-zinc-100" : "text-zinc-700"
+                )}
+              >
+                I design, ship, and operate production software — React/Next.js
+                frontends, Node/Django backends, and AWS‑powered infrastructure.
+                From fintech and compliance to e‑commerce and research portals,
+                I turn ideas into dependable products.
               </p>
-              <ul>
-                <li>
-                  Fluent in React/Next.js, Node/Express, MongoDB/Mongoose, and
-                  Django/Postgres.
-                </li>
-                <li>
-                  DevOps: Nginx, PM2, Docker, Render.com, SSL/TLS, multi‑domain
-                  DNS.
-                </li>
-                <li>
-                  Payments: Stripe Checkout, webhooks, metadata, anti‑fraud
-                  controls.
-                </li>
-                <li>
-                  AI‑adjacent: vector search over policies; automated insights
-                  and notifications.
-                </li>
-              </ul>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {toolTags.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-zinc-800 bg-zinc-900/60 px-3 py-1 text-xs text-zinc-300"
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <button
+                  onClick={() => scrollTo("projects")}
+                  className={cx(
+                    "inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-3 font-semibold text-black hover:bg-emerald-400 transition-all",
+                    theme === "dark"
+                      ? "hover:shadow-md hover:shadow-emerald-500/20"
+                      : "hover:shadow-lg"
+                  )}
                 >
-                  {t}
-                </span>
-              ))}
+                  Explore work <ArrowRight size={20} />
+                </button>
+                <button
+                  onClick={() => open("/Rufaro_Mucheri_Resume.pdf")}
+                  className={cx(
+                    "inline-flex items-center gap-2 rounded-xl border px-4 py-3 font-semibold transition-all",
+                    theme === "dark"
+                      ? "border-zinc-800 bg-zinc-900 text-white hover:bg-zinc-800 hover:shadow-md hover:shadow-white/10"
+                      : "border-zinc-300 bg-white text-zinc-900 hover:bg-zinc-100 hover:shadow-lg"
+                  )}
+                >
+                  Download résumé
+                </button>
+              </div>
+              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {stats.map((s) => (
+                  <Stat key={s.label} {...s} />
+                ))}
+              </div>
             </div>
           </div>
-          <div className="space-y-3">
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4">
-              <div className="flex items-center gap-3 text-sm">
-                <MapPin size={16} className="opacity-80" /> Calgary, Canada
+        </section>
+
+        {/* ===== About ===== */}
+        <Section id="about" title="About Rufaro" kicker="Profile">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="md:col-span-2">
+              <div className="prose prose-invert max-w-none">
+                <p>
+                  Calgary‑based Systems Infrastructure Engineer and full‑stack
+                  builder with a Computer Science degree and hands‑on AWS
+                  experience (Amplify, S3, CloudFront, EC2, SES, SNS). I craft
+                  scalable platforms with clear UX, strong security, and
+                  practical monetization. Recent work spans multi‑tenant SaaS,
+                  payments, compliance, scheduling, and knowledge portals.
+                </p>
+                <ul>
+                  <li>
+                    Fluent in React/Next.js, Node/Express, MongoDB/Mongoose, and
+                    Django/Postgres.
+                  </li>
+                  <li>
+                    DevOps: Nginx, PM2, Docker, Render.com, SSL/TLS,
+                    multi‑domain DNS.
+                  </li>
+                  <li>
+                    Payments: Stripe Checkout, webhooks, metadata, anti‑fraud
+                    controls.
+                  </li>
+                  <li>
+                    AI‑adjacent: vector search over policies; automated insights
+                    and notifications.
+                  </li>
+                </ul>
               </div>
-              <div className="mt-2 flex items-center gap-3 text-sm">
-                <Briefcase size={16} className="opacity-80" /> Tech Director @
-                Magetsi; Founder @ Skillbase
-              </div>
-              <div className="mt-2 flex items-center gap-3 text-sm">
-                <ShieldCheck size={16} className="opacity-80" /> Safety,
-                compliance & security‑minded
+              <div className="mt-6 flex flex-wrap gap-2">
+                {toolTags.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-zinc-800 bg-zinc-900/60 px-3 py-1 text-xs text-zinc-300"
+                  >
+                    {t}
+                  </span>
+                ))}
               </div>
             </div>
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4">
-              <div className="text-sm text-zinc-400">Availability</div>
-              <div className="text-white font-semibold">
-                Consulting / Fractional Engineering
-              </div>
-              <button
-                onClick={() =>
-                  open("mailto:rufaro@rufarodev.com?subject=Project%20inquiry")
-                }
-                className="mt-3 inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2 font-semibold text-black hover:bg-emerald-400"
+            <div className="space-y-3">
+              <div
+                className={cx(
+                  "rounded-2xl border p-4",
+                  theme === "dark"
+                    ? "border-zinc-800 bg-zinc-900/50"
+                    : "border-zinc-200 bg-white"
+                )}
               >
-                Book a chat <CalendarIcon />
-              </button>
-            </div>
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4">
-              <div className="text-sm text-zinc-400 mb-2">Connect</div>
-              <div className="flex items-center gap-3">
-                <IconLink
-                  Icon={Github}
-                  label="GitHub"
-                  href="https://github.com/rufustech/"
-                />
-                <IconLink
-                  Icon={Linkedin}
-                  label="LinkedIn"
-                  href="www.linkedin.com/in/rmucheri
+                <div
+                  className={cx(
+                    "flex items-center gap-3 text-sm",
+                    theme === "dark" ? "text-zinc-300" : "text-zinc-700"
+                  )}
+                >
+                  <MapPin size={16} className="opacity-80" /> Calgary, Canada
+                </div>
+                <div
+                  className={cx(
+                    "mt-2 flex items-center gap-3 text-sm",
+                    theme === "dark" ? "text-zinc-300" : "text-zinc-700"
+                  )}
+                >
+                  <Briefcase size={16} className="opacity-80" /> Tech Director @
+                  Magetsi; Founder @ Skillbase
+                </div>
+                <div
+                  className={cx(
+                    "mt-2 flex items-center gap-3 text-sm",
+                    theme === "dark" ? "text-zinc-300" : "text-zinc-700"
+                  )}
+                >
+                  <ShieldCheck size={16} className="opacity-80" /> Safety,
+                  compliance & security‑minded
+                </div>
+              </div>
+              <div
+                className={cx(
+                  "rounded-2xl border p-4",
+                  theme === "dark"
+                    ? "border-zinc-800 bg-zinc-900/50"
+                    : "border-zinc-200 bg-white"
+                )}
+              >
+                <div
+                  className={cx(
+                    "text-sm",
+                    theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+                  )}
+                >
+                  Availability
+                </div>
+                <div
+                  className={cx(
+                    "font-semibold",
+                    theme === "dark" ? "text-white" : "text-zinc-900"
+                  )}
+                >
+                  Consulting / Fractional Engineering
+                </div>
+                <button
+                  onClick={() =>
+                    open(
+                      "mailto:rufaro@rufarodev.com?subject=Project%20inquiry"
+                    )
+                  }
+                  className="mt-3 inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2 font-semibold text-black hover:bg-emerald-400"
+                >
+                  Book a chat <CalendarIcon />
+                </button>
+              </div>
+              <div
+                className={cx(
+                  "rounded-2xl border p-4",
+                  theme === "dark"
+                    ? "border-zinc-800 bg-zinc-900/50"
+                    : "border-zinc-200 bg-white"
+                )}
+              >
+                <div
+                  className={cx(
+                    "text-sm mb-2",
+                    theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+                  )}
+                >
+                  Connect
+                </div>
+                <div className="flex items-center gap-3">
+                  <IconLink
+                    Icon={Github}
+                    label="GitHub"
+                    href="https://github.com/rufustech/"
+                  />
+                  <IconLink
+                    Icon={Linkedin}
+                    label="LinkedIn"
+                    href="www.linkedin.com/in/rmucheri
 
 "
-                />
-                <IconLink
-                  Icon={Globe2}
-                  label="Magetsi"
-                  href="https://magetsi.co.zw"
-                />
+                  />
+                  <IconLink
+                    Icon={Globe2}
+                    label="Magetsi"
+                    href="https://magetsi.co.zw"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </Section>
+        </Section>
 
-      {/* ===== Ventures / Timeline ===== */}
-      <Section
-        id="ventures"
-        title="Ventures & Milestones"
-        kicker="What I build"
-      >
-        <div className="grid md:grid-cols-2 gap-10">
-          <div className="space-y-6">
-            {ventures
-              .filter((v) => v.highlight)
-              .map((v) => (
-                <div
-                  key={v.title}
-                  className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6"
+        {/* ===== Ventures / Timeline ===== */}
+        <Section
+          id="ventures"
+          title="Ventures & Milestones"
+          kicker="What I build"
+        >
+          <div className="grid md:grid-cols-2 gap-10">
+            <div className="space-y-6">
+              {ventures
+                .filter((v) => v.highlight)
+                .map((v) => (
+                  <div
+                    key={v.title}
+                    className={cx(
+                      "rounded-2xl border p-6",
+                      theme === "dark"
+                        ? "border-zinc-800 bg-zinc-900/50"
+                        : "border-zinc-200 bg-white"
+                    )}
+                  >
+                    <div className="flex items-center gap-2 text-emerald-500 text-sm">
+                      <Rocket size={16} /> Flagship
+                    </div>
+                    <div
+                      className={cx(
+                        "mt-2 text-xl font-semibold",
+                        theme === "dark" ? "text-white" : "text-zinc-900"
+                      )}
+                    >
+                      {v.title}
+                    </div>
+                    <div
+                      className={cx(
+                        "text-xs",
+                        theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+                      )}
+                    >
+                      {v.role} • {v.period}
+                    </div>
+                    <p
+                      className={cx(
+                        "mt-3 text-sm",
+                        theme === "dark" ? "text-zinc-300/90" : "text-zinc-600"
+                      )}
+                    >
+                      {v.blurb}
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {v.tags.map((t) => (
+                        <span
+                          key={t}
+                          className={cx(
+                            "rounded-full border px-2 py-0.5 text-[11px]",
+                            theme === "dark"
+                              ? "border-zinc-800/70 bg-zinc-800/30 text-zinc-300"
+                              : "border-zinc-300 bg-zinc-100 text-zinc-700"
+                          )}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                    {v.links?.live && (
+                      <button
+                        onClick={() => open(v.links.live)}
+                        className={cx(
+                          "mt-4 inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm transition-colors",
+                          theme === "dark"
+                            ? "border-zinc-700 bg-zinc-800 hover:bg-zinc-700"
+                            : "border-zinc-300 bg-zinc-100 hover:bg-zinc-200"
+                        )}
+                      >
+                        <ExternalLink size={16} /> Visit site
+                      </button>
+                    )}
+                  </div>
+                ))}
+            </div>
+            <div className="relative">
+              <div
+                className={cx(
+                  "absolute left-1 top-0 bottom-0 w-0.5",
+                  theme === "dark" ? "bg-zinc-800" : "bg-zinc-300"
+                )}
+              />
+              <div className="space-y-8 pl-6">
+                {ventures.map((v) => (
+                  <TimelineItem key={v.title} v={v} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        {/* ===== Projects w/ Filters ===== */}
+        <Section
+          id="projects"
+          title="Selected Work"
+          kicker="Builds & case studies"
+        >
+          <div className="flex flex-wrap items-center gap-3">
+            <div
+              className={cx(
+                "inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm",
+                theme === "dark"
+                  ? "border-zinc-800 bg-zinc-900/60 text-zinc-300"
+                  : "border-zinc-300 bg-white text-zinc-700"
+              )}
+            >
+              <Code2 size={16} /> Filter:
+              <div className="flex flex-wrap gap-1">
+                {allTags.map((t) => (
+                  <button
+                    key={t}
+                    onClick={() => setTag(t)}
+                    className={cx(
+                      "rounded-full px-2 py-0.5 text-xs transition-colors",
+                      tag === t
+                        ? "bg-emerald-500 text-black"
+                        : theme === "dark"
+                        ? "text-zinc-300 hover:text-white"
+                        : "text-zinc-600 hover:text-zinc-900"
+                    )}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search projects, stacks, tags…"
+              className={cx(
+                "w-full md:w-80 rounded-xl border px-3 py-2 text-sm outline-none transition-colors",
+                theme === "dark"
+                  ? "border-zinc-800 bg-zinc-900/60 placeholder:text-zinc-500 focus:border-zinc-700 text-white"
+                  : "border-zinc-300 bg-white placeholder:text-zinc-400 focus:border-zinc-400 text-zinc-900"
+              )}
+            />
+          </div>
+
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {filtered.map((p) => (
+              <ProjectCard key={p.name} p={p} onOpen={setModal} />
+            ))}
+          </div>
+
+          {/* Modal */}
+          <AnimatePresence>
+            {modal && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className={cx(
+                  "fixed inset-0 z-50 flex items-center justify-center p-4",
+                  theme === "dark" ? "bg-black/70" : "bg-zinc-900/50"
+                )}
+                onClick={() => setModal(null)}
+              >
+                <motion.div
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 30, opacity: 0 }}
+                  onClick={(e) => e.stopPropagation()}
+                  className={cx(
+                    "w-full max-w-2xl rounded-2xl border p-6",
+                    theme === "dark"
+                      ? "border-zinc-800 bg-zinc-950"
+                      : "border-zinc-300 bg-white"
+                  )}
                 >
-                  <div className="flex items-center gap-2 text-emerald-400 text-sm">
-                    <Rocket size={16} /> Flagship
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div
+                        className={cx(
+                          "text-xl font-semibold",
+                          theme === "dark" ? "text-white" : "text-zinc-900"
+                        )}
+                      >
+                        {modal.name}
+                      </div>
+                      <div
+                        className={cx(
+                          "mt-1 text-sm",
+                          theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+                        )}
+                      >
+                        {modal.stack?.join(" • ")}
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => setModal(null)}
+                      className={cx(
+                        "rounded-lg border px-2 py-1 text-sm transition-colors",
+                        theme === "dark"
+                          ? "border-zinc-800 text-zinc-300 hover:bg-zinc-800"
+                          : "border-zinc-300 text-zinc-700 hover:bg-zinc-100"
+                      )}
+                    >
+                      Close
+                    </button>
                   </div>
-                  <div className="mt-2 text-xl font-semibold text-white">
-                    {v.title}
-                  </div>
-                  <div className="text-xs text-zinc-400">
-                    {v.role} • {v.period}
-                  </div>
-                  <p className="mt-3 text-sm text-zinc-300/90">{v.blurb}</p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {v.tags.map((t) => (
+                  <p
+                    className={cx(
+                      "mt-4 text-sm",
+                      theme === "dark" ? "text-zinc-300/90" : "text-zinc-600"
+                    )}
+                  >
+                    {modal.summary}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {(modal.tags || []).map((t) => (
                       <span
                         key={t}
-                        className="rounded-full border border-zinc-800/70 bg-zinc-800/30 px-2 py-0.5 text-[11px] text-zinc-300"
+                        className={cx(
+                          "rounded-full border px-2 py-0.5 text-[11px]",
+                          theme === "dark"
+                            ? "border-zinc-800/70 bg-zinc-800/30 text-zinc-300"
+                            : "border-zinc-300 bg-zinc-100 text-zinc-700"
+                        )}
                       >
                         {t}
                       </span>
                     ))}
                   </div>
-                  {v.links?.live && (
-                    <button
-                      onClick={() => open(v.links.live)}
-                      className="mt-4 inline-flex items-center gap-2 rounded-xl border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-sm hover:bg-zinc-700"
-                    >
-                      <ExternalLink size={16} /> Visit site
-                    </button>
-                  )}
-                </div>
-              ))}
-          </div>
-          <div className="relative">
-            <div className="absolute left-1 top-0 bottom-0 w-0.5 bg-zinc-800" />
-            <div className="space-y-8 pl-6">
-              {ventures.map((v) => (
-                <TimelineItem key={v.title} v={v} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* ===== Projects w/ Filters ===== */}
-      <Section
-        id="projects"
-        title="Selected Work"
-        kicker="Builds & case studies"
-      >
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="inline-flex items-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm">
-            <Code2 size={16} /> Filter:
-            <div className="flex flex-wrap gap-1">
-              {allTags.map((t) => (
-                <button
-                  key={t}
-                  onClick={() => setTag(t)}
-                  className={cx(
-                    "rounded-full px-2 py-0.5 text-xs",
-                    tag === t
-                      ? "bg-emerald-500 text-black"
-                      : "text-zinc-300 hover:text-white"
-                  )}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
-          </div>
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search projects, stacks, tags…"
-            className="w-full md:w-80 rounded-xl border border-zinc-800 bg-zinc-900/60 px-3 py-2 text-sm outline-none placeholder:text-zinc-500 focus:border-zinc-700"
-          />
-        </div>
-
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtered.map((p) => (
-            <ProjectCard key={p.name} p={p} onOpen={setModal} />
-          ))}
-        </div>
-
-        {/* Modal */}
-        <AnimatePresence>
-          {modal && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
-              onClick={() => setModal(null)}
-            >
-              <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 30, opacity: 0 }}
-                onClick={(e) => e.stopPropagation()}
-                className="w-full max-w-2xl rounded-2xl border border-zinc-800 bg-zinc-950 p-6"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="text-xl font-semibold text-white">
-                      {modal.name}
-                    </div>
-                    <div className="mt-1 text-sm text-zinc-400">
-                      {modal.stack?.join(" • ")}
-                    </div>
+                  <div className="mt-5 flex items-center gap-3">
+                    {modal.links?.live && (
+                      <button
+                        onClick={() => open(modal.links.live)}
+                        className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-3 py-2 text-sm font-semibold text-black"
+                      >
+                        <ExternalLink size={16} /> Live site
+                      </button>
+                    )}
                   </div>
-                  <button
-                    onClick={() => setModal(null)}
-                    className="rounded-lg border border-zinc-800 px-2 py-1 text-sm text-zinc-300"
-                  >
-                    Close
-                  </button>
-                </div>
-                <p className="mt-4 text-sm text-zinc-300/90">{modal.summary}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {(modal.tags || []).map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full border border-zinc-800/70 bg-zinc-800/30 px-2 py-0.5 text-[11px] text-zinc-300"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-5 flex items-center gap-3">
-                  {modal.links?.live && (
-                    <button
-                      onClick={() => open(modal.links.live)}
-                      className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-3 py-2 text-sm font-semibold text-black"
-                    >
-                      <ExternalLink size={16} /> Live site
-                    </button>
-                  )}
-                </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </Section>
+            )}
+          </AnimatePresence>
+        </Section>
 
-      {/* ===== Skills / Chart ===== */}
-      <Section
-        id="skills"
-        title="Skills & Focus Areas"
-        kicker="Breadth × depth"
-      >
-        <div className="grid lg:grid-cols-2 gap-8">
-          <div className="rounded-2xl border border-zinc-300 bg-white/80 p-3 ">
-            <div className="flex items-center gap-2 text-sm text-zinc-300">
-              <ChartBar size={16} /> Tooling overview
+        {/* ===== Skills / Chart ===== */}
+        <Section
+          id="skills"
+          title="Skills & Focus Areas"
+          kicker="Breadth × depth"
+        >
+          <div className="grid lg:grid-cols-2 gap-8">
+            <div
+              className={cx(
+                "rounded-2xl border p-3",
+                theme === "dark"
+                  ? "border-zinc-800 bg-zinc-900/50"
+                  : "border-zinc-300 bg-white/80"
+              )}
+            >
+              <div
+                className={cx(
+                  "flex items-center gap-2 text-sm",
+                  theme === "dark" ? "text-zinc-300" : "text-zinc-700"
+                )}
+              >
+                <ChartBar size={16} /> Tooling overview
+              </div>
+              <div className="mt-4 h-72">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    data={skills}
+                    margin={{ top: 10, right: 20, left: -20, bottom: 0 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.15} />
+                    <XAxis
+                      dataKey="name"
+                      tick={{
+                        fontSize: 12,
+                        fill: theme === "dark" ? "#d4d4d8" : "#3f3f46",
+                      }}
+                      angle={-15}
+                      textAnchor="end"
+                      height={50}
+                    />
+                    <YAxis
+                      tick={{
+                        fontSize: 12,
+                        fill: theme === "dark" ? "#d4d4d8" : "#3f3f46",
+                      }}
+                      domain={[0, 100]}
+                    />
+                    <Tooltip cursor={{ fillOpacity: 0.1 }} />
+                    <Bar
+                      dataKey="value"
+                      fill={theme === "dark" ? "#10b981" : "#059669"}
+                      radius={[6, 6, 0, 0]}
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
             </div>
-            <div className="mt-4 h-72">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={skills}
-                  margin={{ top: 10, right: 20, left: -20, bottom: 0 }}
+            <div
+              className={cx(
+                "rounded-2xl border p-6",
+                theme === "dark"
+                  ? "border-zinc-800 bg-zinc-900/50"
+                  : "border-zinc-200 bg-white"
+              )}
+            >
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="space-y-3">
+                  <Item icon={ShieldCheck} title="Production‑grade">
+                    SSL/TLS, RBAC, audit trails, backups, monitoring.
+                  </Item>
+                  <Item icon={HardDrive} title="Data & infra">
+                    Multi‑tenant design, S3/CloudFront, Render, PM2, Nginx.
+                  </Item>
+                  <Item icon={BookOpen} title="Docs & UX">
+                    Clear copy, helpful error states, and admin workflows.
+                  </Item>
+                </div>
+                <div className="space-y-3">
+                  <Item icon={Timer} title="Fast iteration">
+                    Ship weekly slices; measure impact; refine.
+                  </Item>
+                  <Item icon={Globe2} title="Web scale">
+                    CDN‑first delivery with cache strategies.
+                  </Item>
+                  <Item icon={CheckCircle2} title="Outcome‑focused">
+                    Revenue, reliability, and maintainability.
+                  </Item>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        {/* ===== Contact ===== */}
+        <Section
+          id="contact"
+          title="Let’s build something dependable"
+          kicker="Contact"
+        >
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="md:col-span-2 rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
+              <p className="text-zinc-300">
+                Have a product, integration, or platform in mind? I can help
+                scope, architect, and deliver it end‑to‑end — then run it like a
+                service. Send a short brief and I’ll reply with options.
+              </p>
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <a
+                  href="mailto:rufaro@rufarodev.com"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-2 font-semibold text-black hover:bg-emerald-400 transition-colors"
                 >
-                  <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.15} />
-                  <XAxis
-                    dataKey="name"
-                    tick={{ fontSize: 12 }}
-                    angle={-15}
-                    textAnchor="end"
-                    height={50}
-                  />
-                  <YAxis tick={{ fontSize: 12 }} domain={[0, 100]} />
-                  <Tooltip cursor={{ fillOpacity: 0.1 }} />
-                  <Bar dataKey="value" radius={[6, 6, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div className="space-y-3">
-                <Item icon={ShieldCheck} title="Production‑grade">
-                  SSL/TLS, RBAC, audit trails, backups, monitoring.
-                </Item>
-                <Item icon={HardDrive} title="Data & infra">
-                  Multi‑tenant design, S3/CloudFront, Render, PM2, Nginx.
-                </Item>
-                <Item icon={BookOpen} title="Docs & UX">
-                  Clear copy, helpful error states, and admin workflows.
-                </Item>
-              </div>
-              <div className="space-y-3">
-                <Item icon={Timer} title="Fast iteration">
-                  Ship weekly slices; measure impact; refine.
-                </Item>
-                <Item icon={Globe2} title="Web scale">
-                  CDN‑first delivery with cache strategies.
-                </Item>
-                <Item icon={CheckCircle2} title="Outcome‑focused">
-                  Revenue, reliability, and maintainability.
-                </Item>
+                  <Mail size={16} /> Email me
+                </a>
+                <a
+                  href="tel:+1403XXXXXXX"
+                  className={cx(
+                    "inline-flex items-center justify-center gap-2 rounded-xl border px-4 py-2 font-semibold transition-colors",
+                    theme === "dark"
+                      ? "border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-white"
+                      : "border-zinc-300 bg-white hover:bg-zinc-100 text-zinc-900"
+                  )}
+                >
+                  <Phone size={16} /> Call
+                </a>
+                <button
+                  onClick={() => scrollTo("projects")}
+                  className={cx(
+                    "inline-flex items-center justify-center gap-2 rounded-xl border px-4 py-2 font-semibold transition-colors",
+                    theme === "dark"
+                      ? "border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-white"
+                      : "border-zinc-300 bg-white hover:bg-zinc-100 text-zinc-900"
+                  )}
+                >
+                  <Briefcase size={16} /> View portfolio
+                </button>
               </div>
             </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* ===== Contact ===== */}
-      <Section
-        id="contact"
-        title="Let’s build something dependable"
-        kicker="Contact"
-      >
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="md:col-span-2 rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
-            <p className="text-zinc-300">
-              Have a product, integration, or platform in mind? I can help
-              scope, architect, and deliver it end‑to‑end — then run it like a
-              service. Send a short brief and I’ll reply with options.
-            </p>
-            <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <a
-                href="mailto:rufaro@rufarodev.com"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-2 font-semibold text-black hover:bg-emerald-400"
+            <div
+              className={cx(
+                "rounded-2xl border p-6",
+                theme === "dark"
+                  ? "border-zinc-800 bg-zinc-900/50"
+                  : "border-zinc-200 bg-white"
+              )}
+            >
+              <div
+                className={cx(
+                  "text-sm",
+                  theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+                )}
               >
-                <Mail size={16} /> Email me
-              </a>
-              <a
-                href="tel:+1403XXXXXXX"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-2 font-semibold hover:bg-zinc-800"
+                Quick facts
+              </div>
+              <ul
+                className={cx(
+                  "mt-2 space-y-2 text-sm",
+                  theme === "dark" ? "text-zinc-300" : "text-zinc-700"
+                )}
               >
-                <Phone size={16} /> Call
-              </a>
-              <button
-                onClick={() => scrollTo("projects")}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-2 font-semibold hover:bg-zinc-800"
-              >
-                <Briefcase size={16} /> View portfolio
-              </button>
+                <li>Systems Infrastructure Engineer (Calgary)</li>
+                <li>Tech Director — Magetsi</li>
+                <li>Founder — Skillbase</li>
+                <li>Full‑stack: React/Next, Node, Django</li>
+              </ul>
             </div>
           </div>
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
-            <div className="text-sm text-zinc-400">Quick facts</div>
-            <ul className="mt-2 space-y-2 text-sm text-zinc-300">
-              <li>Systems Infrastructure Engineer (Calgary)</li>
-              <li>Tech Director — Magetsi</li>
-              <li>Founder — Skillbase</li>
-              <li>Full‑stack: React/Next, Node, Django</li>
-            </ul>
-          </div>
-        </div>
-      </Section>
+        </Section>
 
-      {/* ===== Footer ===== */}
-      <footer className="border-t border-zinc-900 py-8">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 text-sm text-zinc-400">
-          <div>© {new Date().getFullYear()} Rufaro Mucheri — rufarodev.com</div>
-          <div className="flex items-center gap-3">
-            <IconLink Icon={Github} label="GitHub" href="https://github.com" />
-            <IconLink
-              Icon={Linkedin}
-              label="LinkedIn"
-              href="https://linkedin.com"
-            />
+        {/* ===== Footer ===== */}
+        <footer
+          className={cx(
+            "border-t py-8",
+            theme === "dark" ? "border-zinc-900" : "border-zinc-200"
+          )}
+        >
+          <div
+            className={cx(
+              "mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 text-sm",
+              theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+            )}
+          >
+            <div>
+              © {new Date().getFullYear()} Rufaro Mucheri — rufarodev.com
+            </div>
+            <div className="flex items-center gap-3">
+              <IconLink
+                Icon={Github}
+                label="GitHub"
+                href="https://github.com"
+              />
+              <IconLink
+                Icon={Linkedin}
+                label="LinkedIn"
+                href="https://linkedin.com"
+              />
+            </div>
           </div>
-        </div>
-      </footer>
+        </footer>
 
-      {/* Back to top */}
-      <button
-        onClick={() => scrollTo("home")}
-        className="fixed bottom-6 right-6 z-40 rounded-full border border-zinc-800 bg-zinc-900 p-3 text-zinc-300 shadow-lg hover:bg-zinc-800"
-        aria-label="Back to top"
-      >
-        ↑
-      </button>
-    </div>
+        {/* Back to top */}
+        <button
+          onClick={() => scrollTo("home")}
+          className={cx(
+            "fixed bottom-6 right-6 z-40 rounded-full border p-3 shadow-lg transition-colors",
+            theme === "dark"
+              ? "border-zinc-800 bg-zinc-900 text-zinc-300 hover:bg-zinc-800"
+              : "border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-100"
+          )}
+          aria-label="Back to top"
+        >
+          ↑
+        </button>
+      </div>
+    </ThemeContext.Provider>
   );
 }
 
 // ---------- Tiny bits ----------
 function IconLink({ Icon, label, href }) {
+  const { theme } = useTheme();
   return (
     <button
       onClick={() => open(href)}
-      className="inline-flex items-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900 px-3 py-1.5 hover:bg-zinc-800"
+      className={cx(
+        "inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 transition-colors",
+        theme === "dark"
+          ? "border-zinc-800 bg-zinc-900 hover:bg-zinc-800"
+          : "border-zinc-300 bg-white hover:bg-zinc-100"
+      )}
     >
       <Icon size={16} />
       <span className="text-sm">{label}</span>
@@ -917,14 +1357,37 @@ function IconLink({ Icon, label, href }) {
 }
 
 function Item({ icon: Icon, title, children }) {
+  const { theme } = useTheme();
   return (
     <div className="flex items-start gap-3">
-      <div className="rounded-lg bg-zinc-800/60 p-2">
-        <Icon size={16} />
+      <div
+        className={cx(
+          "rounded-lg p-2",
+          theme === "dark" ? "bg-zinc-800/60" : "bg-zinc-100"
+        )}
+      >
+        <Icon
+          size={16}
+          className={theme === "dark" ? "text-white" : "text-zinc-700"}
+        />
       </div>
       <div>
-        <div className="font-medium text-white">{title}</div>
-        <div className="text-sm text-zinc-300/90">{children}</div>
+        <div
+          className={cx(
+            "font-medium",
+            theme === "dark" ? "text-white" : "text-zinc-900"
+          )}
+        >
+          {title}
+        </div>
+        <div
+          className={cx(
+            "text-sm",
+            theme === "dark" ? "text-zinc-300/90" : "text-zinc-600"
+          )}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );
