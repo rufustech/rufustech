@@ -886,13 +886,13 @@ export default function Home() {
             )}
           />
 
-          <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-28">
+          <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
             <div className="grid lg:grid-cols-[1fr_auto] gap-10 lg:gap-16 items-center">
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
-                className="max-w-3xl"
+                className="max-w-3xl order-2 lg:order-1"
               >
               <Kicker icon={Sparkles}>
                 AWS Data Center Operations • Cloud Solutions Architect •
@@ -987,7 +987,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-              className="hidden lg:flex justify-center"
+              className="flex justify-center order-1 lg:order-2"
             >
               <div className="relative">
                 {/* Glow ring */}
@@ -1004,7 +1004,7 @@ export default function Home() {
                 />
                 <div
                   className={cx(
-                    "relative h-72 w-72 xl:h-80 xl:w-80 rounded-full overflow-hidden ring-4 shadow-2xl",
+                    "relative h-48 w-48 sm:h-60 sm:w-60 md:h-72 md:w-72 xl:h-80 xl:w-80 rounded-full overflow-hidden ring-4 shadow-2xl",
                     theme === "dark"
                       ? "ring-black/80 shadow-emerald-500/20"
                       : "ring-white shadow-emerald-500/20"
