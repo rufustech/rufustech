@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "RufaroDev",
+  "name": "Rufaro Mucheri — Freelance Full-Stack Software Developer",
+  "description": "Freelance full-stack software developer in Calgary, Alberta. Web applications, SaaS platforms, APIs and AWS cloud builds with React, Node.js and Python.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +19,12 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait-primary",
+  "lang": "en-CA",
+  "categories": ["business", "productivity", "developer"],
+  "theme_color": "#0a0a0a",
+  "background_color": "#0a0a0a"
 }

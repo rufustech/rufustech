@@ -1,3 +1,11 @@
 # https://www.robotstxt.org/robotstxt.html
+# Everything on this site is public and intended to be indexed.
+
 User-agent: *
-Disallow:
+Allow: /
+
+# Build artefacts and asset hashes have no standalone search value.
+Disallow: /static/js/
+Disallow: /static/css/
+
+Sitemap: https://www.rufarodev.com/sitemap.xml

@@ -24,6 +24,39 @@ code {
   }
 }
 
+@layer utilities {
+  /* Hide the scrollbar on the sticky nav while keeping it scrollable */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* FAQ accordions use native <details>. Suppress the default disclosure
+   triangle (Safari/older Chrome need the vendor pseudo-element) so the
+   custom chevron is the only affordance. */
+summary::-webkit-details-marker {
+  display: none;
+}
+summary::marker {
+  content: "";
+}
+
+/* Respect users who ask the OS to reduce motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @layer components {
   .brands-wrapper {
     @apply flex animate-infinite-scroll items-center justify-center md:justify-start [&_img]:max-w-none [&_li]:mx-4;

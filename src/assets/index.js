@@ -5,8 +5,6 @@ import calculators from './images/calculatorszw.png'
 import esmprop from './images/esmprop.png'
 import mamoyo from './images/mamoyo.jpg'
 import solvaxion from './images/solvaxion.svg'
-import wildrose from './images/WildroseLogo(1).svg'
-import wildroseplacement from './images/WildroseLogo2.svg'
 import aiel from './images/Logo.png'
 import aws from './images/aws.png'
 import nicedesk from './images/nicedesk.jpg'
@@ -27,9 +25,7 @@ export {
     esmprop,
     mamoyo,
     solvaxion,
-    wildrose,
     background,
-    wildroseplacement,
     aiel,
     aws,
     nicedesk,

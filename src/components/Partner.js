@@ -6,7 +6,6 @@ import {
   esmprop,
   magetsi,
   solvaxion,
-  wildrose,
 } from "../assets";
 
 function Partner() {
@@ -19,9 +18,6 @@ function Partner() {
           </li>
           <li>
             <img src={magetsi} width="250" height="100" />
-          </li>
-          <li>
-            <img src={wildrose} width="250" height="100" />
           </li>
           <li>
             <img src={esmprop} width="250" height="100" />
@@ -42,9 +38,6 @@ function Partner() {
           </li>
           <li>
             <img src={magetsi} width="250" height="100" />
-          </li>
-          <li>
-            <img src={wildrose} width="250" height="100" />
           </li>
           <li>
             <img src={esmprop} width="250" height="100" />

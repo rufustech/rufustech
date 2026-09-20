@@ -2,67 +2,411 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+
+    <!-- ============================ Primary ============================ -->
+    <title>Freelance Full-Stack Software Developer | Rufaro Mucheri</title>
     <meta
       name="description"
-      content="Platform Architect | Solutions Architect | Cloud Engineer | DevOps Engineer | Tech Enthusiast"
+      content="Freelance full-stack software developer in Calgary, available remote worldwide. I build web apps, SaaS platforms and APIs with React, Node.js, Python and AWS."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
+    <link rel="canonical" href="https://www.rufarodev.com/" />
+    <meta name="author" content="Rufaro Mucheri" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+
+    <!-- Location signals for "developer near me" style queries -->
+    <meta name="geo.region" content="CA-AB" />
+    <meta name="geo.placename" content="Calgary, Alberta" />
+    <meta name="ICBM" content="51.0447, -114.0719" />
+
+    <!-- ========================== Open Graph =========================== -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Rufaro Mucheri — Freelance Software Developer" />
+    <meta property="og:url" content="https://www.rufarodev.com/" />
+    <meta
+      property="og:title"
+      content="Freelance Full-Stack Software Developer | Rufaro Mucheri"
+    />
+    <meta
+      property="og:description"
+      content="Available for freelance and contract projects. Web apps, SaaS platforms, APIs and AWS cloud builds — React, Node.js, Python. Calgary based, working remote worldwide."
+    />
+    <meta property="og:image" content="https://www.rufarodev.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Rufaro Mucheri, full-stack software developer, available for freelance and contract projects."
+    />
+    <meta property="og:locale" content="en_CA" />
+
+    <!-- ============================ Twitter ============================ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Freelance Full-Stack Software Developer | Rufaro Mucheri"
+    />
+    <meta
+      name="twitter:description"
+      content="Available for freelance and contract projects. Web apps, SaaS platforms, APIs and AWS cloud builds — React, Node.js, Python."
+    />
+    <meta name="twitter:image" content="https://www.rufarodev.com/og-image.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="Rufaro Mucheri, full-stack software developer, available for freelance and contract projects."
+    />
+
+    <!-- ============================== Icons =========================== -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="%PUBLIC_URL%/logo512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <meta name="theme-color" content="#0a0a0a" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
+    <!-- ===================== Performance hints ======================== -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="preload" as="image" href="%PUBLIC_URL%/og-image.jpg" />
+
+    <!-- =================== Structured data (JSON-LD) ===================
+         One @graph so the Person, the page, the site, the service offering
+         and the FAQ all reference each other by @id. Every claim here is
+         also stated in the visible page content.
     -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://www.rufarodev.com/#person",
+            "name": "Rufaro Mucheri",
+            "givenName": "Rufaro",
+            "familyName": "Mucheri",
+            "url": "https://www.rufarodev.com/",
+            "image": "https://www.rufarodev.com/og-image.jpg",
+            "jobTitle": "Full-Stack Software Developer",
+            "description": "Freelance full-stack software developer and cloud engineer based in Calgary, Alberta. Builds web applications, SaaS platforms, APIs and AWS infrastructure for clients worldwide.",
+            "email": "mailto:mucherinvest@gmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Calgary",
+              "addressRegion": "AB",
+              "addressCountry": "CA"
+            },
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Amazon Web Services"
+            },
+            "knowsAbout": [
+              "Software Development",
+              "Full-Stack Web Development",
+              "React",
+              "Next.js",
+              "Node.js",
+              "Express",
+              "Python",
+              "Django",
+              "JavaScript",
+              "TypeScript",
+              "MongoDB",
+              "PostgreSQL",
+              "REST API Design",
+              "Amazon Web Services",
+              "Cloud Architecture",
+              "DevOps",
+              "CI/CD",
+              "Docker",
+              "Linux Server Administration",
+              "Nginx",
+              "DNS Configuration",
+              "Email Deliverability",
+              "SPF, DKIM and DMARC",
+              "Technical SEO",
+              "Core Web Vitals",
+              "Web Accessibility",
+              "Stripe Payment Integration",
+              "Multi-tenant SaaS Architecture",
+              "Data Center Operations"
+            ],
+            "knowsLanguage": ["en"],
+            "hasCredential": [
+              {
+                "@type": "EducationalOccupationalCredential",
+                "name": "AWS Certified Cloud Practitioner",
+                "credentialCategory": "certification",
+                "recognizedBy": {
+                  "@type": "Organization",
+                  "name": "Amazon Web Services"
+                }
+              },
+              {
+                "@type": "EducationalOccupationalCredential",
+                "name": "Google IT Support Professional Certificate",
+                "credentialCategory": "certification",
+                "recognizedBy": { "@type": "Organization", "name": "Google" }
+              }
+            ],
+            "alumniOf": {
+              "@type": "EducationalOrganization",
+              "name": "Southern Alberta Institute of Technology (SAIT)"
+            },
+            "sameAs": [
+              "https://github.com/rufustech",
+              "https://www.linkedin.com/in/rmucheri"
+            ],
+            "makesOffer": { "@id": "https://www.rufarodev.com/#service" }
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://www.rufarodev.com/#service",
+            "name": "Rufaro Mucheri — Freelance Software Development",
+            "alternateName": "RufaroDev",
+            "url": "https://www.rufarodev.com/",
+            "image": "https://www.rufarodev.com/og-image.jpg",
+            "description": "Freelance and contract software development: custom web applications, SaaS platforms, API and integration work, AWS cloud architecture, DevOps pipelines, Linux and Nginx server setup, DNS and business email configuration, technical SEO, and ongoing maintenance.",
+            "provider": { "@id": "https://www.rufarodev.com/#person" },
+            "founder": { "@id": "https://www.rufarodev.com/#person" },
+            "email": "mailto:mucherinvest@gmail.com",
+            "priceRange": "$$",
+            "currenciesAccepted": "CAD, USD",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Calgary",
+              "addressRegion": "AB",
+              "addressCountry": "CA"
+            },
+            "areaServed": [
+              { "@type": "City", "name": "Calgary" },
+              { "@type": "AdministrativeArea", "name": "Alberta" },
+              { "@type": "Country", "name": "Canada" },
+              { "@type": "Country", "name": "United States" },
+              { "@type": "Country", "name": "United Kingdom" },
+              { "@type": "Place", "name": "Remote worldwide" }
+            ],
+            "availableChannel": {
+              "@type": "ServiceChannel",
+              "serviceUrl": "https://www.rufarodev.com/#contact",
+              "name": "Project enquiry form"
+            },
+            "knowsLanguage": ["en"],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Software development and cloud services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Custom Web Application Development",
+                    "description": "Full-stack web apps built with React, Next.js, Node.js and Express, backed by MongoDB or PostgreSQL."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "SaaS Platform Development",
+                    "description": "Multi-tenant SaaS products with role-based access control, billing, audit trails and reporting."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "API Development and Third-Party Integration",
+                    "description": "REST API design and versioning, plus Stripe, ERP and CRM integrations."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Website Design and Development",
+                    "description": "Responsive, accessible marketing sites and design systems built with Tailwind CSS."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "AWS Cloud Architecture and Migration",
+                    "description": "VPC and multi-AZ design, EC2, S3, CloudFront, Route 53, RDS and Lambda, plus migration and cost review."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "DevOps and CI/CD Automation",
+                    "description": "GitHub Actions pipelines, Docker containerization and zero-downtime deployments."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Linux Server Administration and Nginx Setup",
+                    "description": "Server provisioning and hardening, Nginx reverse proxy, SSL/TLS with automatic renewal."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "DNS and Business Email Configuration",
+                    "description": "DNS zone management and nameserver migrations, plus Google Workspace or Microsoft 365 email with SPF, DKIM and DMARC."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Technical SEO and Web Performance",
+                    "description": "Structured data, metadata, sitemaps and Core Web Vitals tuning."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Maintenance and Managed Support",
+                    "description": "Monthly patching, dependency upgrades, monitoring and small change requests after launch."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.rufarodev.com/#website",
+            "url": "https://www.rufarodev.com/",
+            "name": "Rufaro Mucheri — Freelance Software Developer",
+            "description": "Portfolio and service site for Rufaro Mucheri, a freelance full-stack software developer and cloud engineer in Calgary, Alberta.",
+            "publisher": { "@id": "https://www.rufarodev.com/#person" },
+            "inLanguage": "en-CA"
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://www.rufarodev.com/#webpage",
+            "url": "https://www.rufarodev.com/",
+            "name": "Freelance Full-Stack Software Developer | Rufaro Mucheri",
+            "isPartOf": { "@id": "https://www.rufarodev.com/#website" },
+            "about": { "@id": "https://www.rufarodev.com/#person" },
+            "mainEntity": { "@id": "https://www.rufarodev.com/#person" },
+            "primaryImageOfPage": "https://www.rufarodev.com/og-image.jpg",
+            "inLanguage": "en-CA"
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://www.rufarodev.com/#faq",
+            "isPartOf": { "@id": "https://www.rufarodev.com/#webpage" },
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What kind of projects do you take on?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Custom web applications, SaaS platforms, API and integration work, and the cloud infrastructure underneath them. That ranges from a single well-scoped fix — a broken deployment, a DNS or email migration, a slow page — through to building and operating a multi-tenant platform end to end."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you price hourly or fixed?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Both. Small, clearly defined jobs work well hourly. Larger builds get a fixed price per milestone so you know the cost before work starts. Longer engagements can run as a monthly retainer with an agreed number of days. Either way, the scope, cost and timeline go in writing first."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How soon can you start, and how long will my project take?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Small fixes usually start within a few days. A typical marketing site runs two to four weeks, a focused web app four to eight weeks, and a larger platform three months or more. I ship in weekly slices so you see working software early rather than waiting for one big reveal."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you work with clients outside Canada?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. I work remotely with clients in Canada, the United States, the United Kingdom and Africa. I am based in Calgary on Mountain Time, which overlaps most of the North American business day and the UK morning. I invoice in CAD or USD."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Who owns the code when the project is finished?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You do. On final payment the source code, repositories, domains and cloud accounts are yours, transferred into your own accounts wherever possible. You also get the architecture notes and runbooks so another developer can pick the work up without me."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What happens after launch?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Launch day is the start, not the finish. I offer ongoing maintenance covering security patching, dependency upgrades, certificate and domain renewals, monitoring, performance reviews and small change requests. If you would rather run it in-house, I hand over documented runbooks instead."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
 
-    <title>Rufaro</title>
+    <!-- Google Analytics 4 -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-5EZJL21683"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-5EZJL21683");
+    </script>
   </head>
-  <!-- Google tag (gtag.js) -->
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-5EZJL21683"
-  ></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
 
-    gtag("config", "G-5EZJL21683");
-  </script>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-WW7PWSFF"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe
-    ></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <!-- Crawlable fallback for clients that do not execute JavaScript.
+         Mirrors the real page content; it is not hidden from users. -->
+    <noscript>
+      <h1>Rufaro Mucheri — Freelance Full-Stack Software Developer</h1>
+      <p>
+        I am a freelance software developer and cloud engineer based in Calgary,
+        Alberta, available for contract and project work remotely worldwide.
+      </p>
+      <h2>Services</h2>
+      <ul>
+        <li>Custom web application development (React, Next.js, Node.js, Express)</li>
+        <li>Multi-tenant SaaS platform development</li>
+        <li>REST API development and third-party integrations, including Stripe</li>
+        <li>Website design and development with Tailwind CSS</li>
+        <li>AWS cloud architecture, migration and cost review</li>
+        <li>DevOps, CI/CD pipelines and Docker containerization</li>
+        <li>Linux server administration and Nginx configuration</li>
+        <li>DNS management and business email setup with SPF, DKIM and DMARC</li>
+        <li>Technical SEO and Core Web Vitals performance work</li>
+        <li>Ongoing maintenance and managed support</li>
+      </ul>
+      <h2>Contact</h2>
+      <p>
+        Email <a href="mailto:mucherinvest@gmail.com">mucherinvest@gmail.com</a>.
+        Code samples on
+        <a href="https://github.com/rufustech">GitHub</a>; professional history on
+        <a href="https://www.linkedin.com/in/rmucheri">LinkedIn</a>.
+      </p>
+      <p>This site needs JavaScript enabled for the full interactive version.</p>
+    </noscript>
   </body>
 </html>

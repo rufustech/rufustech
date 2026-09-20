@@ -1,35 +1,59 @@
-import { useEffect, useMemo, useState, createContext, useContext } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import {
+  Activity,
   ArrowRight,
+  AtSign,
   BadgeCheck,
   BookOpen,
+  Boxes,
   Briefcase,
+  Building2,
   ChartBar,
   CheckCircle2,
+  ClipboardList,
+  Clock,
   Cloud,
   Code2,
+  Compass,
   Cpu,
   Database,
   ExternalLink,
+  Eye,
+  Gauge,
+  GitBranch,
   Github,
   Globe2,
   HardDrive,
+  KeyRound,
   Layers,
+  Layout,
+  LineChart,
   Linkedin,
+  ListChecks,
   Lock,
   Mail,
+  MailCheck,
   MapPin,
   Moon,
   Network,
-  Phone,
+  Palette,
+  Plug,
+  Repeat,
   Rocket,
+  Route,
+  Scale,
+  Search,
   Server,
+  ServerCog,
   ShieldCheck,
   Sparkles,
   Sun,
+  Target,
   Terminal,
   Timer,
+  TrendingUp,
+  Users,
   Workflow,
   Wrench,
   Zap,
@@ -54,6 +78,9 @@ import {
   rufus,
   whiteoffice,
 } from "../assets";
+import ContactForm from "./ContactForm";
+import QuoteForm from "./QuoteForm";
+import { ThemeContext, cx, useTheme } from "./ThemeContext";
 /* =========================================================
    RufaroDev — One‑Page SPA (Home.jsx)
    - Single file, production‑ready component
@@ -62,12 +89,9 @@ import {
    - Uses only standard libs so you can drop into any CRA/Vite/Next project
    ========================================================= */
 
-// ---------- Theme Context ----------
-const ThemeContext = createContext();
-const useTheme = () => useContext(ThemeContext);
-
 // ---------- Helpers ----------
-const cx = (...cls) => cls.filter(Boolean).join(" ");
+// ThemeContext / useTheme / cx live in ./ThemeContext so sibling components
+// (e.g. ContactForm) can share them without importing this file.
 const open = (url) => window.open(url, "_blank", "noopener,noreferrer");
 const Section = ({ id, title, kicker, children }) => {
   const { theme } = useTheme();
@@ -140,17 +164,17 @@ const ventures = [
     blurb:
       "Multi‑tenant HSE training & compliance SaaS: Courses, Quizzes, Certificates, Safety Meetings, Inspections, Incidents, AI policy Q&A, and more.",
     tags: ["SaaS", "HSE", "React", "Node", "MongoDB", "AWS"],
-    links: { live: "https://safety.co.zw" },
+    links: { live: "https://skillbase.co.zw" },
     highlight: true,
   },
   {
-    title: "Wildrose Placement Inc.",
-    role: "Platform Engineer",
-    period: "2022 → Present",
+    title: "East Africa Wholesale Foods",
+    role: "Platform Architect & Web Developer",
+    period: "2025 → Present",
     blurb:
-      "Product studio & venture lab delivering high‑impact web apps, integrations, and go‑to‑market experiments for startups and SMBs.",
-    tags: ["Studio", "Product", "SaaS"],
-    links: { live: "https://www.wildroseplacement.com/" },
+      "Wholesale food distribution platform for East African retailers and grocers — product catalogue, bulk ordering, tiered pricing, and supply‑chain visibility.",
+    tags: ["Wholesale", "E‑commerce", "Catalogue", "Logistics"],
+    links: { live: "https://eastafricawholesalefoods.com" },
     highlight: true,
   },
   {
@@ -183,25 +207,6 @@ const ventures = [
     links: { live: "https://www.aielinstitute.org/" },
     highlight: true,
   },
-
-  {
-    title: "Voting App",
-    role: "Platform Architect",
-    period: "2025",
-    blurb:
-      "Free + paid voting with Stripe Checkout, webhook‑driven counting, anti‑bot controls, and dynamic leaderboards.",
-    tags: ["Stripe", "Security", "Next.js", "MongoDB"],
-    links: { live: "https://votes.co.zw/" },
-    highlight: false,
-  },
-  {
-    title: "Dispora Health Presciptions",
-    role: "Platform Architect --- Work in Progress/Planning",
-    period: "2025 →",
-    blurb:
-      "Diaspora‑to‑home prescription purchasing with pharmacy integrations, inventory/price sync, and regulatory compliance.",
-    tags: ["Healthcare", "Compliance", "React.js", "Node"],
-  },
 ];
 
 const projects = [
@@ -230,14 +235,14 @@ const projects = [
       "Courses, quizzes, certificates, inspections, incidents, AI policy Q&A, broadcast notices, and competency tracking.",
     stack: ["React", "Node", "MongoDB", "S3", "CloudFront", "Render"],
     tags: ["SaaS", "Full‑Stack"],
-    links: { live: "https://safety.co.zw" },
+    links: { live: "https://skillbase.co.zw/" },
     featured: true,
   },
   // Selected builds
   {
-    name: "Wildrose Placement Inc",
+    name: "East Africa Wholesale Foods",
     summary:
-      "Job placement website with employer and candidate portals: post openings, search/filter jobs, apply with resumes, screening questionnaires, interview scheduling, and status notifications.",
+      "Wholesale storefront with a searchable product catalogue, case/bulk ordering, customer‑tier pricing, quote requests, and order tracking for retail buyers.",
     stack: [
       "Next.js",
       "React",
@@ -249,15 +254,8 @@ const projects = [
       "AWS S3",
     ],
     featured: true,
-    tags: ["Recruitment", "ATS", "Portal", "Full-Stack"],
-    links: { live: "https://wildroseplacement.com" },
-  },
-  {
-    name: "Voting App + Stripe",
-    summary:
-      "Stripe Checkout w/ metadata, webhook reconciliation, retry logic, and fraud‑resistant vote increments.",
-    stack: ["Next.js", "Stripe", "MongoDB"],
-    tags: ["Stripe", "Security"],
+    tags: ["Wholesale", "E‑commerce", "Catalogue", "Full-Stack"],
+    links: { live: "https://eastafricawholesalefoods.com" },
   },
   {
     name: "AIEL Research Portal",
@@ -277,13 +275,6 @@ const projects = [
       "Geological services portal with project pages, exploration logs, compliance docs, and reporting workflows.",
     stack: ["Next.js", "Django", "Postgres"],
     tags: ["Mining", "GIS", "Portal"],
-  },
-  {
-    name: "Diaspora Health Prescriptions",
-    summary:
-      "Multi-pharmacy integration, inventory/price sync, order verification, and ZIMRA compliance workflows.",
-    stack: ["Node", "Express", "MongoDB"],
-    tags: ["Healthcare", "Compliance"],
   },
 ];
 
@@ -322,55 +313,397 @@ const devopsStack = [
   { name: "Zero‑downtime Deploys", icon: Rocket },
 ];
 
-// ---------- Data Center Operations (sanitized, public‑safe wording) ----------
-const dataCenterExperience = [
+// ---------- Services / Capabilities (what clients actually hire me for) ----------
+const services = [
   {
-    title: "Production Data Center Operations",
+    name: "DevOps & Release Automation",
+    icon: GitBranch,
+    group: "Engineering",
     blurb:
-      "Daily hardware diagnostics, break‑fix execution, ticket triage, and rack‑level troubleshooting across high‑density compute, storage, and network environments.",
-    icon: Server,
+      "Repeatable pipelines that take code from commit to production without drama — and roll it back just as calmly.",
+    items: [
+      "GitHub Actions CI/CD (build, test, deploy)",
+      "Docker & Compose containerization",
+      "Zero‑downtime deploys with PM2 / rolling restarts",
+      "Environment & secrets management",
+      "Staging → production promotion + rollback plans",
+    ],
   },
   {
-    title: "Build, Deployment & Launch Readiness",
+    name: "Linux Server Administration",
+    icon: Terminal,
+    group: "Infrastructure",
     blurb:
-      "Rack receiving, rack‑and‑stack, structured cabling, fiber routing, link validation, and operational handover from build into steady‑state operations.",
-    icon: Workflow,
+      "Ubuntu and Amazon Linux servers built, hardened, patched, and monitored the way production actually demands.",
+    items: [
+      "Provisioning, users, groups & sudo policy",
+      "systemd services, cron jobs, log rotation",
+      "SSH key‑only auth, UFW/iptables, fail2ban",
+      "Disk, memory & process troubleshooting",
+      "Patch management and kernel/package upgrades",
+    ],
   },
   {
-    title: "Network Infrastructure Support",
+    name: "Nginx & Reverse Proxy",
+    icon: Route,
+    group: "Infrastructure",
     blurb:
-      "Cisco 9300/9500 fabrics, spine/leaf and backbone/ring readiness, optical span validation, cross‑connect coordination with ISPs, and cable plant audits.",
-    icon: Network,
+      "The front door of your stack: clean routing, TLS that never expires unnoticed, and caching that cuts response times.",
+    items: [
+      "Server blocks, virtual hosts & multi‑site routing",
+      "SSL/TLS termination with Certbot auto‑renewal",
+      "Reverse proxy to Node / Django / Docker upstreams",
+      "Gzip/Brotli, caching headers, rate limiting",
+      "WebSocket proxying, redirects & canonical hosts",
+    ],
   },
   {
-    title: "Change Management & Operational Risk",
+    name: "DNS & Domain Configuration",
+    icon: Globe2,
+    group: "Infrastructure",
     blurb:
-      "Change‑window execution, blast‑radius review, stakeholder coordination, backout planning, and post‑change validation in 24x7 production environments.",
+      "Domains, subdomains, and nameserver migrations handled carefully — including cutovers with no visible downtime.",
+    items: [
+      "Route 53, Cloudflare & registrar zone management",
+      "A / AAAA / CNAME / ALIAS / TXT / SRV records",
+      "Apex + www, subdomain delegation, wildcard setups",
+      "Nameserver migrations with TTL pre‑staging",
+      "DNSSEC, propagation checks & zone documentation",
+    ],
+  },
+  {
+    name: "Email Configuration & Deliverability",
+    icon: MailCheck,
+    group: "Infrastructure",
+    blurb:
+      "Business email that sends, receives, and lands in the inbox — not the spam folder.",
+    items: [
+      "Google Workspace, Microsoft 365 & Zoho setup",
+      "MX records, catch‑all, aliases & shared mailboxes",
+      "SPF, DKIM & DMARC alignment and reporting",
+      "Transactional email via SES / Nodemailer / SMTP relays",
+      "Bounce, complaint & inbox‑placement troubleshooting",
+    ],
+  },
+  {
+    name: "Website Design & UI/UX",
+    icon: Palette,
+    group: "Product",
+    blurb:
+      "Interfaces that look considered and behave predictably across every screen, with accessibility baked in.",
+    items: [
+      "Brand‑aligned design systems & component libraries",
+      "Responsive, mobile‑first Tailwind layouts",
+      "WCAG AA colour contrast, focus states & keyboard paths",
+      "Purposeful motion with Framer Motion",
+      "Dark/light theming and design‑to‑code handoff",
+    ],
+  },
+  {
+    name: "SEO & Web Performance",
+    icon: Search,
+    group: "Growth",
+    blurb:
+      "Technical SEO and Core Web Vitals work so the right people find the site and it feels instant when they do.",
+    items: [
+      "Semantic markup, metadata & Open Graph/Twitter cards",
+      "JSON‑LD structured data, sitemaps & robots.txt",
+      "Canonical URLs, redirects & crawl‑budget hygiene",
+      "Core Web Vitals: LCP, CLS, INP tuning",
+      "Image optimization, CDN caching, GA4 & Search Console",
+    ],
+  },
+  {
+    name: "Enterprise Development",
+    icon: Building2,
+    group: "Engineering",
+    blurb:
+      "Multi‑tenant systems built for organizations — roles, audit trails, integrations, and documentation that survives handover.",
+    items: [
+      "Multi‑tenant data models & tenant isolation",
+      "RBAC, SSO‑ready auth & granular permissions",
+      "Audit logging, reporting & data export",
+      "REST API design, versioning & integration contracts",
+      "Stripe, ERP/CRM and third‑party system integrations",
+    ],
+  },
+  {
+    name: "Cloud Architecture & Migration",
+    icon: Cloud,
+    group: "Cloud",
+    blurb:
+      "AWS designs that survive real traffic and real failures — then the migration path to get you there.",
+    items: [
+      "VPC, subnets, security groups & multi‑AZ topology",
+      "EC2, S3, CloudFront, Route 53, RDS, Lambda",
+      "Lift‑and‑shift and re‑platform migrations",
+      "Cost review, right‑sizing & lifecycle policies",
+      "Backup, DR strategy & restore rehearsals",
+    ],
+  },
+  {
+    name: "Security & Compliance Hardening",
     icon: ShieldCheck,
+    group: "Cloud",
+    blurb:
+      "Least‑privilege access, encrypted everything, and evidence you can hand an auditor.",
+    items: [
+      "IAM least privilege & credential rotation",
+      "SSL/TLS everywhere, HSTS & security headers",
+      "Secrets management and dependency patching",
+      "Access reviews, audit trails & change records",
+      "Backup verification and recovery drills",
+    ],
   },
   {
-    title: "Major Incident Response",
+    name: "Monitoring & Observability",
+    icon: Activity,
+    group: "Cloud",
     blurb:
-      "Operational bridge participation, dependency identification, traffic remediation coordination, and root‑cause analysis follow‑up for high‑impact infrastructure events.",
-    icon: Zap,
+      "You cannot operate what you cannot see. Dashboards, alerts, and logs that name the problem before the customer does.",
+    items: [
+      "CloudWatch metrics, alarms & dashboards",
+      "Uptime/synthetic checks & status reporting",
+      "Centralized logs and error tracking",
+      "Alert routing, escalation & on‑call rotations",
+      "Post‑incident review and follow‑up tracking",
+    ],
   },
   {
-    title: "Secure Hardware Lifecycle",
+    name: "Maintenance & Managed Support",
+    icon: Repeat,
+    group: "Support",
     blurb:
-      "Restricted‑zone equipment handling, secure media sanitization, RMA preparation, and decommissioning aligned with enterprise security and compliance standards.",
+      "Launch day is the beginning. Ongoing care keeps the platform fast, patched, and boring in the best way.",
+    items: [
+      "Monthly patching & dependency upgrades",
+      "Certificate, domain & billing renewal tracking",
+      "Performance and cost reviews",
+      "Content, feature and small‑change requests",
+      "Documented runbooks and knowledge transfer",
+    ],
+  },
+];
+
+// Quick capability pills shown under the services grid
+const capabilityPills = [
+  { name: "DevOps & CI/CD", icon: GitBranch },
+  { name: "Linux Administration", icon: Terminal },
+  { name: "Nginx & TLS", icon: Route },
+  { name: "DNS & Domains", icon: Globe2 },
+  { name: "Email & Deliverability", icon: AtSign },
+  { name: "Website Design", icon: Layout },
+  { name: "SEO & Core Web Vitals", icon: TrendingUp },
+  { name: "Enterprise Platforms", icon: Building2 },
+  { name: "Cloud Architecture", icon: Cloud },
+  { name: "Containers & Docker", icon: Boxes },
+  { name: "Observability", icon: LineChart },
+  { name: "Server Hardening", icon: ServerCog },
+  { name: "Performance Tuning", icon: Gauge },
+  { name: "Access & IAM", icon: KeyRound },
+  { name: "Accessibility (WCAG AA)", icon: Eye },
+];
+
+// ---------- Core Principles (how the work gets done) ----------
+const principles = [
+  {
+    title: "Secure by default",
     icon: Lock,
+    blurb:
+      "Least privilege, encryption in transit and at rest, and no shared credentials. Security is a starting condition, not a hardening phase bolted on before launch.",
   },
   {
-    title: "Safety, Compliance & Auditing",
+    title: "Design for failure",
+    icon: ShieldCheck,
     blurb:
-      "Site safety auditing, PPE compliance, physical security control verification, and access‑control audits supporting customer‑data protection requirements.",
-    icon: BadgeCheck,
+      "Hardware dies, networks partition, deploys go wrong. Every design gets a blast‑radius review, a backout plan, and a tested restore path before it reaches production.",
   },
   {
-    title: "On‑Call Scheduling & Coverage",
+    title: "Automate anything done twice",
+    icon: Workflow,
     blurb:
-      "On‑call rotation design across 24x7 shifts, workload balancing, and shift‑handoff continuity to maintain uninterrupted operational coverage.",
-    icon: Timer,
+      "Manual steps are where outages are born. If a task repeats, it becomes a script, a pipeline, or a runbook — repeatable, reviewable, and safe to hand over.",
+  },
+  {
+    title: "Measure it or you don't run it",
+    icon: Activity,
+    blurb:
+      "Metrics, logs, and alerts ship with the feature. Observability is part of the definition of done, so problems get named before customers report them.",
+  },
+  {
+    title: "Simplicity scales",
+    icon: Compass,
+    blurb:
+      "The simplest architecture that meets the requirement wins. Complexity is only added when a real constraint demands it, never for novelty.",
+  },
+  {
+    title: "Performance is a feature",
+    icon: Gauge,
+    blurb:
+      "Fast pages convert and fast systems cost less. Core Web Vitals, query plans, caching, and payload size get treated as product requirements, not afterthoughts.",
+  },
+  {
+    title: "Accessible to everyone",
+    icon: Eye,
+    blurb:
+      "Semantic markup, keyboard paths, contrast, and clear error states as standard. Full WCAG conformance also needs assistive‑tech testing and expert review — I build toward it and say so honestly.",
+  },
+  {
+    title: "Ship small, ship often",
+    icon: Rocket,
+    blurb:
+      "Weekly slices beat quarterly reveals. Small changes are easier to review, safer to release, and give stakeholders something real to react to.",
+  },
+  {
+    title: "Document as you build",
+    icon: ListChecks,
+    blurb:
+      "Architecture notes, runbooks, and handover docs are written while the context is fresh. No project should depend on one person's memory.",
+  },
+  {
+    title: "Cost awareness is engineering",
+    icon: Scale,
+    blurb:
+      "Right‑sizing, lifecycle rules, and CDN‑first delivery keep the bill proportional to the value. An elegant system nobody can afford is not a solution.",
+  },
+  {
+    title: "You build it, you run it",
+    icon: Target,
+    blurb:
+      "Ownership continues past launch. Operating what I ship keeps the feedback loop short and the incentives pointed at reliability.",
+  },
+  {
+    title: "Straight talk with stakeholders",
+    icon: Users,
+    blurb:
+      "Clear scope, honest timelines, and early warning when something slips. Trust comes from predictable communication, not optimistic estimates.",
+  },
+];
+
+// ---------- How engagements work (commercial terms, client-facing) ----------
+const engagementModels = [
+  {
+    name: "Fixed‑price project",
+    icon: Target,
+    bestFor: "Best for a defined build with a clear outcome",
+    detail:
+      "We agree the scope, then I quote a fixed price per milestone. You know the total before anything starts, and each milestone ships something you can actually use.",
+    points: [
+      "Written scope, price and timeline up front",
+      "Milestone payments, not one lump sum",
+      "Change requests priced separately, never silently",
+    ],
+  },
+  {
+    name: "Hourly / day rate",
+    icon: Clock,
+    bestFor: "Best for fixes, audits and unknown scope",
+    detail:
+      "For work that can't be scoped precisely — a broken deploy, a performance problem, an inherited codebase — you buy time and I report where it went.",
+    points: [
+      "Tracked hours with a written summary",
+      "Agreed cap so the bill can't run away",
+      "Good for a one‑off audit or second opinion",
+    ],
+  },
+  {
+    name: "Monthly retainer",
+    icon: Repeat,
+    bestFor: "Best for ongoing development and support",
+    detail:
+      "A set number of days each month for continuous delivery, maintenance and on‑call cover. Effectively a part‑time senior developer without the hiring overhead.",
+    points: [
+      "Reserved capacity each month",
+      "Patching, monitoring and upgrades included",
+      "Rolls month to month — no long lock‑in",
+    ],
+  },
+];
+
+// Realistic starting points, with the timelines I actually quote.
+const projectShapes = [
+  {
+    name: "Marketing site or landing page",
+    duration: "2 – 4 weeks",
+    icon: Layout,
+    blurb:
+      "Responsive, accessible, fast. Design system, CMS or hard‑coded content, contact form, analytics, SEO groundwork, and deployment.",
+  },
+  {
+    name: "Web app / MVP",
+    duration: "4 – 8 weeks",
+    icon: Terminal,
+    blurb:
+      "Auth, database, core workflows, admin views, payments if needed. Built to be extended rather than rewritten after launch.",
+  },
+  {
+    name: "Multi‑tenant SaaS platform",
+    duration: "3 months+",
+    icon: Building2,
+    blurb:
+      "Tenant isolation, role‑based access, billing, audit trails, reporting, and the AWS infrastructure and pipelines to run it.",
+  },
+  {
+    name: "API or third‑party integration",
+    duration: "1 – 3 weeks",
+    icon: Plug,
+    blurb:
+      "REST API design, or wiring your system to Stripe, a CRM, an ERP, or a partner API — with retries, webhooks and reconciliation.",
+  },
+  {
+    name: "Cloud setup or migration",
+    duration: "1 – 3 weeks",
+    icon: Cloud,
+    blurb:
+      "Move off a shared host onto AWS, or tidy what's there: VPC, TLS, backups, CI/CD, monitoring, and a cost review.",
+  },
+  {
+    name: "Rescue / unblock",
+    duration: "2 – 5 days",
+    icon: Zap,
+    blurb:
+      "Site down, deploys broken, email landing in spam, domain misconfigured, pages crawling. Diagnose, fix, document what happened.",
+  },
+];
+
+// What every engagement includes, regardless of size.
+const engagementIncludes = [
+  "A written scope with the cost and timeline before work starts",
+  "Weekly progress updates and a working preview environment",
+  "Source code in your own Git repository from day one",
+  "Full ownership of code, domains and cloud accounts on final payment",
+  "Architecture notes and runbooks so you're never locked to me",
+  "A 30‑day fix window for defects in what I delivered",
+];
+
+// ---------- FAQ ----------
+// These questions and answers are mirrored in the FAQPage JSON-LD in
+// public/index.html. If you edit the wording here, update it there too —
+// structured data must match what the visitor can actually read.
+const faqs = [
+  {
+    q: "What kind of projects do you take on?",
+    a: "Custom web applications, SaaS platforms, API and integration work, and the cloud infrastructure underneath them. That ranges from a single well-scoped fix — a broken deployment, a DNS or email migration, a slow page — through to building and operating a multi-tenant platform end to end.",
+  },
+  {
+    q: "Do you price hourly or fixed?",
+    a: "Both. Small, clearly defined jobs work well hourly. Larger builds get a fixed price per milestone so you know the cost before work starts. Longer engagements can run as a monthly retainer with an agreed number of days. Either way, the scope, cost and timeline go in writing first.",
+  },
+  {
+    q: "How soon can you start, and how long will my project take?",
+    a: "Small fixes usually start within a few days. A typical marketing site runs two to four weeks, a focused web app four to eight weeks, and a larger platform three months or more. I ship in weekly slices so you see working software early rather than waiting for one big reveal.",
+  },
+  {
+    q: "Do you work with clients outside Canada?",
+    a: "Yes. I work remotely with clients in Canada, the United States, the United Kingdom and Africa. I am based in Calgary on Mountain Time, which overlaps most of the North American business day and the UK morning. I invoice in CAD or USD.",
+  },
+  {
+    q: "Who owns the code when the project is finished?",
+    a: "You do. On final payment the source code, repositories, domains and cloud accounts are yours, transferred into your own accounts wherever possible. You also get the architecture notes and runbooks so another developer can pick the work up without me.",
+  },
+  {
+    q: "What happens after launch?",
+    a: "Launch day is the start, not the finish. I offer ongoing maintenance covering security patching, dependency upgrades, certificate and domain renewals, monitoring, performance reviews and small change requests. If you would rather run it in-house, I hand over documented runbooks instead.",
   },
 ];
 
@@ -480,6 +813,16 @@ const toolTags = [
   "Render.com",
   "PM2",
   "Nginx",
+  "Certbot / Let's Encrypt",
+  "Route 53",
+  "Cloudflare",
+  "Google Workspace",
+  "SPF / DKIM / DMARC",
+  "Amazon SES",
+  "Lighthouse",
+  "GA4 & Search Console",
+  "Docker",
+  "GitHub Actions",
   "Git / GitHub",
   "Vite",
   "Jest",
@@ -672,6 +1015,136 @@ function TimelineItem({ v }) {
   );
 }
 
+function ServiceCard({ s }) {
+  const { theme } = useTheme();
+  const Icon = s.icon;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.35 }}
+      whileHover={{ y: -3 }}
+      className={cx(
+        "flex h-full flex-col rounded-2xl border p-5 shadow-sm transition-colors",
+        theme === "dark"
+          ? "border-zinc-800 bg-zinc-900/50 hover:border-emerald-500/40"
+          : "border-zinc-200 bg-white hover:border-emerald-500/40"
+      )}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div
+          className={cx(
+            "rounded-xl p-2",
+            theme === "dark"
+              ? "bg-emerald-500/10 text-emerald-400"
+              : "bg-emerald-50 text-emerald-600"
+          )}
+        >
+          <Icon size={18} />
+        </div>
+        <span
+          className={cx(
+            "rounded-full border px-2 py-0.5 text-[10px] uppercase tracking-wider",
+            theme === "dark"
+              ? "border-zinc-800 bg-zinc-800/40 text-zinc-400"
+              : "border-zinc-300 bg-zinc-100 text-zinc-600"
+          )}
+        >
+          {s.group}
+        </span>
+      </div>
+      <h4
+        className={cx(
+          "mt-3 text-lg font-semibold",
+          theme === "dark" ? "text-white" : "text-zinc-900"
+        )}
+      >
+        {s.name}
+      </h4>
+      <p
+        className={cx(
+          "mt-2 text-sm",
+          theme === "dark" ? "text-zinc-300/90" : "text-zinc-600"
+        )}
+      >
+        {s.blurb}
+      </p>
+      <ul
+        className={cx(
+          "mt-4 space-y-1.5 text-sm",
+          theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+        )}
+      >
+        {s.items.map((it) => (
+          <li key={it} className="flex items-start gap-2">
+            <CheckCircle2
+              size={14}
+              className="mt-0.5 shrink-0 text-emerald-500"
+            />
+            <span>{it}</span>
+          </li>
+        ))}
+      </ul>
+    </motion.div>
+  );
+}
+
+function PrincipleCard({ p, index }) {
+  const { theme } = useTheme();
+  const Icon = p.icon;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.35 }}
+      className={cx(
+        "relative h-full overflow-hidden rounded-2xl border p-5",
+        theme === "dark"
+          ? "border-zinc-800 bg-zinc-900/40"
+          : "border-zinc-200 bg-white"
+      )}
+    >
+      <span
+        aria-hidden
+        className={cx(
+          "absolute right-4 top-2 text-4xl font-bold",
+          theme === "dark" ? "text-zinc-800/80" : "text-zinc-100"
+        )}
+      >
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <div
+        className={cx(
+          "relative inline-flex rounded-xl p-2",
+          theme === "dark"
+            ? "bg-sky-500/10 text-sky-400"
+            : "bg-sky-50 text-sky-600"
+        )}
+      >
+        <Icon size={18} />
+      </div>
+      <h4
+        className={cx(
+          "relative mt-3 font-semibold",
+          theme === "dark" ? "text-white" : "text-zinc-900"
+        )}
+      >
+        {p.title}
+      </h4>
+      <p
+        className={cx(
+          "relative mt-2 text-sm",
+          theme === "dark" ? "text-zinc-300/90" : "text-zinc-600"
+        )}
+      >
+        {p.blurb}
+      </p>
+    </motion.div>
+  );
+}
+
 // ---------- Main Component ----------
 export default function Home() {
   const [theme, setTheme] = useState(() => {
@@ -682,16 +1155,24 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [tag, setTag] = useState("All");
   const [modal, setModal] = useState(null);
+  // Every entry is watched by the scroll spy. `nav: false` keeps a section out
+  // of the top bar so the nav stays readable without losing highlight tracking.
   const sections = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
-    { id: "experience", label: "Experience" },
-    { id: "ventures", label: "Ventures" },
-    { id: "projects", label: "Projects" },
-    { id: "cloud", label: "Cloud & DevOps" },
+    { id: "experience", label: "Experience", nav: false },
+    { id: "ventures", label: "Ventures", nav: false },
+    { id: "projects", label: "Work" },
+    { id: "services", label: "Services" },
+    { id: "hire", label: "Hire me" },
+    { id: "cloud", label: "Cloud" },
     { id: "skills", label: "Skills" },
+    { id: "principles", label: "Principles", nav: false },
+    { id: "faq", label: "FAQ" },
+    { id: "quote", label: "Get a quote", nav: false },
     { id: "contact", label: "Contact" },
   ];
+  const navSections = sections.filter((s) => s.nav !== false);
 
   // Theme persistence
   useEffect(() => {
@@ -808,13 +1289,16 @@ export default function Home() {
                 Dev
               </span>
             </button>
-            <nav className="hidden md:flex items-center gap-1">
-              {sections.map((s) => (
+            <nav
+              aria-label="Page sections"
+              className="hidden md:flex items-center gap-0.5 overflow-x-auto no-scrollbar max-w-[62%]"
+            >
+              {navSections.map((s) => (
                 <button
                   key={s.id}
                   onClick={() => scrollTo(s.id)}
                   className={cx(
-                    "rounded-full px-3 py-1 text-sm transition",
+                    "shrink-0 whitespace-nowrap rounded-full px-2.5 py-1 text-[13px] transition",
                     active === s.id
                       ? theme === "dark"
                         ? "bg-zinc-800 text-white"
@@ -841,21 +1325,22 @@ export default function Home() {
               >
                 {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
               </button>
+              {/* Primary conversion action — deliberately the only
+                  emerald element in the nav so it reads as THE next step. */}
               <button
-                onClick={() => open("mailto:rufaro@rufarodev.com")}
-                className={cx(
-                  "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm",
-                  theme === "dark"
-                    ? "border-zinc-800 bg-zinc-900 hover:bg-zinc-800"
-                    : "border-zinc-300 bg-white hover:bg-zinc-100"
-                )}
+                onClick={() => scrollTo("quote")}
+                className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-3.5 py-1.5 text-sm font-semibold text-black transition-all hover:bg-emerald-400 hover:shadow-md hover:shadow-emerald-500/25"
               >
-                <Mail size={16} /> Contact
+                <ClipboardList size={16} />
+                <span className="hidden sm:inline">Get a quote</span>
+                <span className="sm:hidden">Quote</span>
               </button>
             </div>
           </div>
         </div>
 
+        {/* Primary content landmark — everything between the nav and footer */}
+        <main id="content">
         {/* ===== Hero ===== */}
         <section
           id="home"
@@ -895,18 +1380,20 @@ export default function Home() {
                 className="max-w-3xl order-2 lg:order-1"
               >
               <Kicker icon={Sparkles}>
-                AWS Data Center Operations • Cloud Solutions Architect •
-                DevOps • Full‑Stack
+                Available for freelance & contract projects • Calgary +
+                remote worldwide
               </Kicker>
+              {/* Single H1 on the page. Leads with the phrase clients
+                  actually search for, then the deliverables. */}
               <h1
                 className={cx(
                   "mt-4 text-4xl md:text-6xl font-bold tracking-tight",
                   theme === "dark" ? "text-white" : "text-zinc-900"
                 )}
               >
-                Cloud‑native platforms and the data centers that{" "}
+                Freelance software developer for{" "}
                 <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-sky-400 bg-clip-text text-transparent">
-                  power them
+                  web apps, SaaS, and the cloud they run on
                 </span>
                 .
               </h1>
@@ -916,11 +1403,17 @@ export default function Home() {
                   theme === "dark" ? "text-zinc-100" : "text-zinc-700"
                 )}
               >
-                I'm Rufaro — an all‑round IT professional with 5+ years at
-                Amazon / AWS in Data Center Operations, plus a track record of
-                shipping production software. I architect on AWS, run the
-                DevOps pipelines, operate the racks and the network, and
-                deliver the product. Flagships include{" "}
+                I'm Rufaro Mucheri — a full‑stack software developer in
+                Calgary, Alberta, taking on contract and project work for
+                clients in Canada, the US, the UK, and Africa. I build with{" "}
+                <strong className="font-semibold">
+                  React, Next.js, Node.js, Python
+                </strong>{" "}
+                and deploy on <strong className="font-semibold">AWS</strong> —
+                then run the DNS, email, CI/CD, and Linux servers underneath so
+                the thing actually stays up. Five years inside Amazon / AWS
+                data center operations is where the reliability habits come
+                from. Recent builds include{" "}
                 <a
                   href="https://fluxlogistics.co.uk/"
                   target="_blank"
@@ -942,7 +1435,7 @@ export default function Home() {
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <button
-                  onClick={() => scrollTo("projects")}
+                  onClick={() => scrollTo("quote")}
                   className={cx(
                     "inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-3 font-semibold text-black hover:bg-emerald-400 transition-all",
                     theme === "dark"
@@ -950,10 +1443,11 @@ export default function Home() {
                       : "hover:shadow-lg"
                   )}
                 >
-                  Explore work <ArrowRight size={20} />
+                  <ClipboardList size={18} /> Get a free quote
+                  <ArrowRight size={18} />
                 </button>
                 <button
-                  onClick={() => scrollTo("cloud")}
+                  onClick={() => scrollTo("projects")}
                   className={cx(
                     "inline-flex items-center gap-2 rounded-xl border px-4 py-3 font-semibold transition-all",
                     theme === "dark"
@@ -961,10 +1455,10 @@ export default function Home() {
                       : "border-emerald-500/40 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
                   )}
                 >
-                  <Cloud size={18} /> Cloud & DevOps
+                  <Briefcase size={18} /> See past work
                 </button>
                 <button
-                  onClick={() => open("/Rufaro_Mucheri_Resume.pdf")}
+                  onClick={() => scrollTo("hire")}
                   className={cx(
                     "inline-flex items-center gap-2 rounded-xl border px-4 py-3 font-semibold transition-all",
                     theme === "dark"
@@ -972,7 +1466,7 @@ export default function Home() {
                       : "border-zinc-300 bg-white text-zinc-900 hover:bg-zinc-100 hover:shadow-lg"
                   )}
                 >
-                  Download résumé
+                  <Scale size={18} /> Rates & how I work
                 </button>
               </div>
               <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -1012,7 +1506,11 @@ export default function Home() {
                 >
                   <img
                     src={rufus}
-                    alt="Rufaro Mucheri — placeholder portrait"
+                    alt="Rufaro Mucheri, freelance full-stack software developer and cloud engineer based in Calgary, Alberta"
+                    width="320"
+                    height="320"
+                    loading="eager"
+                    fetchpriority="high"
                     className="h-full w-full object-cover"
                   />
                 </div>
@@ -1047,7 +1545,7 @@ export default function Home() {
               <div className="prose prose-invert max-w-none">
                 <p>
                   All‑round IT professional based in Calgary. AWS Data Center
-                  Technician IV with 5+ years at Amazon / AWS — plus a Cloud
+                  Engineer with 5+ years at Amazon / AWS — plus a Cloud
                   Solutions Architect, DevOps, and full‑stack track shipping
                   production platforms.
                 </p>
@@ -1064,6 +1562,17 @@ export default function Home() {
                   <li>
                     <strong>DevOps & Full‑Stack:</strong> Docker, Nginx, CI/CD,
                     React/Next, Node, Django, Stripe.
+                  </li>
+                  <li>
+                    <strong>Linux & Web Infrastructure:</strong> Ubuntu server
+                    administration, Nginx reverse proxy and TLS, DNS zone and
+                    domain management, business email with SPF/DKIM/DMARC.
+                  </li>
+                  <li>
+                    <strong>Design, SEO & Enterprise:</strong> accessible UI
+                    design systems, technical SEO and Core Web Vitals,
+                    multi‑tenant enterprise platforms with RBAC and audit
+                    trails.
                   </li>
                 </ul>
               </div>
@@ -1107,7 +1616,7 @@ export default function Home() {
                   )}
                 >
                   <Briefcase size={16} className="opacity-80" /> AWS Data
-                  Center Tech IV · Cloud Architect · DevOps
+                  Center Engineer · Cloud Architect · DevOps
                 </div>
                 <div
                   className={cx(
@@ -1575,6 +2084,281 @@ export default function Home() {
           </AnimatePresence>
         </Section>
 
+        {/* ===== Services / Capabilities ===== */}
+        <Section
+          id="services"
+          title="Services & Capabilities"
+          kicker="What I can take off your plate"
+        >
+          <p
+            className={cx(
+              "-mt-2 mb-8 max-w-3xl text-sm md:text-base",
+              theme === "dark" ? "text-zinc-300" : "text-zinc-700"
+            )}
+          >
+            End‑to‑end delivery: design and build the product, put it on
+            infrastructure that holds up, wire the domain and email correctly,
+            make it findable, then keep it running. Engagements range from a
+            one‑off DNS or email fix to architecting and operating a full
+            enterprise platform.
+          </p>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((s) => (
+              <ServiceCard key={s.name} s={s} />
+            ))}
+          </div>
+
+          <div className="mt-10">
+            <div
+              className={cx(
+                "mb-3 text-xs uppercase tracking-widest",
+                theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+              )}
+            >
+              Capabilities at a glance
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {capabilityPills.map((c) => (
+                <span
+                  key={c.name}
+                  className={cx(
+                    "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs",
+                    theme === "dark"
+                      ? "border-zinc-800 bg-zinc-900/60 text-zinc-200"
+                      : "border-zinc-300 bg-white text-zinc-700"
+                  )}
+                >
+                  <c.icon size={13} className="text-emerald-500" />
+                  {c.name}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <button
+              onClick={() =>
+                open(
+                  "mailto:rufaro@rufarodev.com?subject=Service%20inquiry"
+                )
+              }
+              className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 font-semibold text-black transition-colors hover:bg-emerald-400"
+            >
+              <Mail size={16} /> Discuss a requirement
+            </button>
+          </div>
+        </Section>
+
+        {/* ===== Hire me / engagement terms ===== */}
+        <Section
+          id="hire"
+          title="Hire a freelance developer"
+          kicker="How working together works"
+        >
+          <p
+            className={cx(
+              "-mt-2 mb-8 max-w-3xl text-sm md:text-base",
+              theme === "dark" ? "text-zinc-300" : "text-zinc-700"
+            )}
+          >
+            I take on freelance and contract software development for clients in
+            Calgary, across Canada, and remotely in the US, UK and Africa. No
+            agency markup, no account manager — you work directly with the
+            person writing the code.
+          </p>
+
+          {/* engagement models */}
+          <div className="grid gap-5 md:grid-cols-3">
+            {engagementModels.map((m) => (
+              <motion.div
+                key={m.name}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.35 }}
+                className={cx(
+                  "flex h-full flex-col rounded-2xl border p-6",
+                  theme === "dark"
+                    ? "border-zinc-800 bg-zinc-900/50"
+                    : "border-zinc-200 bg-white"
+                )}
+              >
+                <div
+                  className={cx(
+                    "inline-flex w-fit rounded-xl p-2",
+                    theme === "dark"
+                      ? "bg-emerald-500/10 text-emerald-400"
+                      : "bg-emerald-50 text-emerald-600"
+                  )}
+                >
+                  <m.icon size={18} />
+                </div>
+                <h3
+                  className={cx(
+                    "mt-3 text-lg font-semibold",
+                    theme === "dark" ? "text-white" : "text-zinc-900"
+                  )}
+                >
+                  {m.name}
+                </h3>
+                <div
+                  className={cx(
+                    "mt-1 text-xs font-medium",
+                    theme === "dark" ? "text-emerald-400" : "text-emerald-600"
+                  )}
+                >
+                  {m.bestFor}
+                </div>
+                <p
+                  className={cx(
+                    "mt-3 text-sm",
+                    theme === "dark" ? "text-zinc-300/90" : "text-zinc-600"
+                  )}
+                >
+                  {m.detail}
+                </p>
+                <ul
+                  className={cx(
+                    "mt-4 space-y-1.5 text-sm",
+                    theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+                  )}
+                >
+                  {m.points.map((p) => (
+                    <li key={p} className="flex items-start gap-2">
+                      <CheckCircle2
+                        size={14}
+                        className="mt-0.5 shrink-0 text-emerald-500"
+                      />
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* typical project shapes + timelines */}
+          <div className="mt-10">
+            <div
+              className={cx(
+                "mb-3 text-xs uppercase tracking-widest",
+                theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+              )}
+            >
+              Typical projects and how long they take
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {projectShapes.map((p) => (
+                <div
+                  key={p.name}
+                  className={cx(
+                    "rounded-2xl border p-5",
+                    theme === "dark"
+                      ? "border-zinc-800 bg-zinc-900/40"
+                      : "border-zinc-200 bg-white"
+                  )}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <p.icon size={17} className="mt-0.5 text-emerald-500" />
+                    <span
+                      className={cx(
+                        "rounded-full border px-2 py-0.5 text-[11px] font-medium whitespace-nowrap",
+                        theme === "dark"
+                          ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+                          : "border-emerald-500/30 bg-emerald-50 text-emerald-700"
+                      )}
+                    >
+                      {p.duration}
+                    </span>
+                  </div>
+                  <h3
+                    className={cx(
+                      "mt-3 font-semibold",
+                      theme === "dark" ? "text-white" : "text-zinc-900"
+                    )}
+                  >
+                    {p.name}
+                  </h3>
+                  <p
+                    className={cx(
+                      "mt-2 text-sm",
+                      theme === "dark" ? "text-zinc-300/90" : "text-zinc-600"
+                    )}
+                  >
+                    {p.blurb}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <p
+              className={cx(
+                "mt-3 text-xs",
+                theme === "dark" ? "text-zinc-500" : "text-zinc-500"
+              )}
+            >
+              Timelines are honest estimates from past builds, not guarantees.
+              Yours gets a firm figure once the scope is agreed.
+            </p>
+          </div>
+
+          {/* what's always included */}
+          <div
+            className={cx(
+              "mt-10 rounded-3xl border p-6 md:p-8",
+              theme === "dark"
+                ? "border-emerald-500/25 bg-gradient-to-br from-zinc-900 to-emerald-950/25"
+                : "border-emerald-500/25 bg-gradient-to-br from-white to-emerald-50"
+            )}
+          >
+            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <h3
+                  className={cx(
+                    "text-xl font-bold tracking-tight",
+                    theme === "dark" ? "text-white" : "text-zinc-900"
+                  )}
+                >
+                  Every engagement includes
+                </h3>
+                <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
+                  {engagementIncludes.map((item) => (
+                    <div
+                      key={item}
+                      className={cx(
+                        "flex items-start gap-2 text-sm",
+                        theme === "dark" ? "text-zinc-300" : "text-zinc-700"
+                      )}
+                    >
+                      <ShieldCheck
+                        size={15}
+                        className="mt-0.5 shrink-0 text-emerald-500"
+                      />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="shrink-0">
+                <button
+                  onClick={() => scrollTo("contact")}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 font-semibold text-black transition-colors hover:bg-emerald-400 lg:w-auto"
+                >
+                  <Mail size={16} /> Send a project brief
+                </button>
+                <p
+                  className={cx(
+                    "mt-2 text-center text-xs lg:text-left",
+                    theme === "dark" ? "text-zinc-500" : "text-zinc-500"
+                  )}
+                >
+                  Reply within one business day
+                </p>
+              </div>
+            </div>
+          </div>
+        </Section>
+
         {/* ===== Cloud & DevOps ===== */}
         <Section
           id="cloud"
@@ -1742,61 +2526,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
-            {/* Data center experience */}
-            <div className="relative mt-10">
-              <div
-                className={cx(
-                  "text-xs uppercase tracking-widest mb-3",
-                  theme === "dark" ? "text-zinc-400" : "text-zinc-600"
-                )}
-              >
-                Data Center Operations — production AWS specialized knowledge
-              </div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                {dataCenterExperience.map((d) => (
-                  <motion.div
-                    key={d.title}
-                    whileHover={{ y: -3 }}
-                    className={cx(
-                      "rounded-2xl border p-5 h-full",
-                      theme === "dark"
-                        ? "border-zinc-800 bg-zinc-900/40"
-                        : "border-zinc-200 bg-white"
-                    )}
-                  >
-                    <div
-                      className={cx(
-                        "inline-flex items-center justify-center rounded-xl p-2 mb-3",
-                        theme === "dark"
-                          ? "bg-sky-500/10 text-sky-400"
-                          : "bg-sky-50 text-sky-600"
-                      )}
-                    >
-                      <d.icon size={18} />
-                    </div>
-                    <div
-                      className={cx(
-                        "font-semibold",
-                        theme === "dark" ? "text-white" : "text-zinc-900"
-                      )}
-                    >
-                      {d.title}
-                    </div>
-                    <p
-                      className={cx(
-                        "mt-2 text-sm",
-                        theme === "dark"
-                          ? "text-zinc-300/90"
-                          : "text-zinc-600"
-                      )}
-                    >
-                      {d.blurb}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
           </div>
         </Section>
 
@@ -1955,93 +2684,290 @@ export default function Home() {
           </div>
         </Section>
 
-        {/* ===== Contact ===== */}
+        {/* ===== Core Principles ===== */}
         <Section
-          id="contact"
-          title="Let’s build something dependable"
-          kicker="Contact"
+          id="principles"
+          title="Core Engineering Principles"
+          kicker="How the work gets done"
         >
-          <div className="grid md:grid-cols-3 gap-6">
-            <div
-              className={cx(
-                "md:col-span-2 rounded-2xl border p-6",
-                theme === "dark"
-                  ? "border-zinc-800 bg-zinc-900/50"
-                  : "border-zinc-200 bg-white"
-              )}
-            >
-              <p
-                className={cx(
-                  theme === "dark" ? "text-zinc-300" : "text-zinc-700"
-                )}
-              >
-                Have a product, integration, or platform in mind? I can help
-                scope, architect, and deliver it end‑to‑end — then run it like a
-                service. Send a short brief and I’ll reply with options.
-              </p>
-              <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <a
-                  href="mailto:rufaro@rufarodev.com"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-2 font-semibold text-black hover:bg-emerald-400 transition-colors"
-                >
-                  <Mail size={16} /> Email me
-                </a>
-                <a
-                  href="tel:+1403XXXXXXX"
-                  className={cx(
-                    "inline-flex items-center justify-center gap-2 rounded-xl border px-4 py-2 font-semibold transition-colors",
-                    theme === "dark"
-                      ? "border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-white"
-                      : "border-zinc-300 bg-white hover:bg-zinc-100 text-zinc-900"
-                  )}
-                >
-                  <Phone size={16} /> Call
-                </a>
-                <button
-                  onClick={() => scrollTo("projects")}
-                  className={cx(
-                    "inline-flex items-center justify-center gap-2 rounded-xl border px-4 py-2 font-semibold transition-colors",
-                    theme === "dark"
-                      ? "border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-white"
-                      : "border-zinc-300 bg-white hover:bg-zinc-100 text-zinc-900"
-                  )}
-                >
-                  <Briefcase size={16} /> View portfolio
-                </button>
-              </div>
-            </div>
-            <div
-              className={cx(
-                "rounded-2xl border p-6",
-                theme === "dark"
-                  ? "border-zinc-800 bg-zinc-900/50"
-                  : "border-zinc-200 bg-white"
-              )}
-            >
+          <p
+            className={cx(
+              "-mt-2 mb-8 max-w-3xl text-sm md:text-base",
+              theme === "dark" ? "text-zinc-300" : "text-zinc-700"
+            )}
+          >
+            These are the rules I hold to whether the job is a single Nginx
+            config or a multi‑tenant platform. They come out of running
+            production infrastructure at AWS scale, where the cost of shortcuts
+            is measured in customer impact.
+          </p>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {principles.map((p, i) => (
+              <PrincipleCard key={p.title} p={p} index={i} />
+            ))}
+          </div>
+
+          <div
+            className={cx(
+              "mt-8 rounded-2xl border p-5 md:p-6",
+              theme === "dark"
+                ? "border-emerald-500/30 bg-emerald-500/5"
+                : "border-emerald-500/30 bg-emerald-50"
+            )}
+          >
+            <div className="flex items-start gap-3">
               <div
                 className={cx(
-                  "text-sm",
-                  theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+                  "rounded-xl p-2",
+                  theme === "dark"
+                    ? "bg-emerald-500/10 text-emerald-400"
+                    : "bg-emerald-100 text-emerald-700"
                 )}
               >
-                Quick facts
+                <BadgeCheck size={18} />
               </div>
-              <ul
-                className={cx(
-                  "mt-2 space-y-2 text-sm",
-                  theme === "dark" ? "text-zinc-300" : "text-zinc-700"
-                )}
-              >
-                <li>AWS Data Center Technician IV — Calgary, AB</li>
-                <li>5+ years continuous Amazon / AWS tenure</li>
-                <li>AWS Certified Cloud Practitioner</li>
-                <li>Cloud Solutions Architect · DevOps Engineer</li>
-                <li>Full‑Stack: React/Next, Node, Django</li>
-                <li>U.S. build & enablement assignments</li>
-              </ul>
+              <div>
+                <div
+                  className={cx(
+                    "font-semibold",
+                    theme === "dark" ? "text-white" : "text-zinc-900"
+                  )}
+                >
+                  The short version
+                </div>
+                <p
+                  className={cx(
+                    "mt-1 text-sm",
+                    theme === "dark" ? "text-zinc-300" : "text-zinc-700"
+                  )}
+                >
+                  Build the simplest thing that meets the requirement, secure it
+                  from the start, automate the repeatable parts, instrument what
+                  matters, document it for the next person, and stay accountable
+                  for it after launch.
+                </p>
+              </div>
             </div>
           </div>
         </Section>
+
+        {/* ===== FAQ =====
+            Native <details>/<summary>: answers stay in the DOM while
+            collapsed, so crawlers read them and the FAQPage structured data in
+            index.html matches visible content. Keep the copy in sync with the
+            `faqs` array and the JSON-LD. */}
+        <Section
+          id="faq"
+          title="Questions clients ask"
+          kicker="Before you get in touch"
+        >
+          <div className="grid gap-3 lg:grid-cols-2">
+            {faqs.map((item) => (
+              <details
+                key={item.q}
+                className={cx(
+                  "group rounded-2xl border p-5 transition-colors",
+                  theme === "dark"
+                    ? "border-zinc-800 bg-zinc-900/50 open:border-emerald-500/30"
+                    : "border-zinc-200 bg-white open:border-emerald-500/30"
+                )}
+              >
+                <summary
+                  className={cx(
+                    "flex cursor-pointer list-none items-start justify-between gap-4 font-semibold",
+                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 rounded",
+                    theme === "dark"
+                      ? "text-white focus-visible:ring-offset-zinc-900"
+                      : "text-zinc-900 focus-visible:ring-offset-white"
+                  )}
+                >
+                  <h3 className="text-base font-semibold">{item.q}</h3>
+                  <ArrowRight
+                    size={18}
+                    aria-hidden
+                    className="mt-0.5 shrink-0 text-emerald-500 transition-transform group-open:rotate-90"
+                  />
+                </summary>
+                <p
+                  className={cx(
+                    "mt-3 text-sm leading-relaxed",
+                    theme === "dark" ? "text-zinc-300/90" : "text-zinc-600"
+                  )}
+                >
+                  {item.a}
+                </p>
+              </details>
+            ))}
+          </div>
+
+          <p
+            className={cx(
+              "mt-6 text-sm",
+              theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+            )}
+          >
+            Something not covered here?{" "}
+            <button
+              onClick={() => scrollTo("contact")}
+              className="font-semibold text-emerald-500 underline-offset-4 hover:underline"
+            >
+              Ask me directly
+            </button>{" "}
+            — I answer every enquiry personally.
+          </p>
+        </Section>
+
+        {/* ===== Quote / intake questionnaire ===== */}
+        <Section
+          id="quote"
+          title="Get a project quote"
+          kicker="Intake questionnaire"
+        >
+          <div className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-start">
+            <div className="min-w-0 lg:order-1">
+              <QuoteForm />
+            </div>
+
+            {/* Why it's worth filling in */}
+            <aside className="space-y-4 lg:order-2">
+              <div
+                className={cx(
+                  "rounded-2xl border p-5",
+                  theme === "dark"
+                    ? "border-zinc-800 bg-zinc-900/50"
+                    : "border-zinc-200 bg-white"
+                )}
+              >
+                <h3
+                  className={cx(
+                    "text-sm font-semibold",
+                    theme === "dark" ? "text-white" : "text-zinc-900"
+                  )}
+                >
+                  Why the long form?
+                </h3>
+                <p
+                  className={cx(
+                    "mt-2 text-sm",
+                    theme === "dark" ? "text-zinc-300/90" : "text-zinc-600"
+                  )}
+                >
+                  A vague brief gets a vague number. The more of this you answer,
+                  the closer my quote is to the real cost — and the fewer
+                  surprises either of us hits later.
+                </p>
+                <ul
+                  className={cx(
+                    "mt-4 space-y-2 text-sm",
+                    theme === "dark" ? "text-zinc-400" : "text-zinc-600"
+                  )}
+                >
+                  {[
+                    "Takes about 5 minutes",
+                    "Only a few fields are required",
+                    "Saves as you go — refresh safe",
+                    "Written proposal in 2 business days",
+                  ].map((point) => (
+                    <li key={point} className="flex items-start gap-2">
+                      <CheckCircle2
+                        size={14}
+                        className="mt-0.5 shrink-0 text-emerald-500"
+                      />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div
+                className={cx(
+                  "rounded-2xl border p-5",
+                  theme === "dark"
+                    ? "border-zinc-800 bg-zinc-900/50"
+                    : "border-zinc-200 bg-white"
+                )}
+              >
+                <h3
+                  className={cx(
+                    "text-sm font-semibold",
+                    theme === "dark" ? "text-white" : "text-zinc-900"
+                  )}
+                >
+                  Not ready for all that?
+                </h3>
+                <p
+                  className={cx(
+                    "mt-2 text-sm",
+                    theme === "dark" ? "text-zinc-300/90" : "text-zinc-600"
+                  )}
+                >
+                  Send a couple of sentences instead and I'll ask the questions
+                  myself.
+                </p>
+                <button
+                  onClick={() => scrollTo("contact")}
+                  className={cx(
+                    "mt-3 inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-semibold transition-colors",
+                    theme === "dark"
+                      ? "border-zinc-700 bg-zinc-800 text-white hover:bg-zinc-700"
+                      : "border-zinc-300 bg-zinc-100 text-zinc-900 hover:bg-zinc-200"
+                  )}
+                >
+                  <Mail size={15} /> Use the short form
+                </button>
+              </div>
+            </aside>
+          </div>
+        </Section>
+
+        {/* ===== Contact ===== */}
+        <Section
+          id="contact"
+          title="Prefer a quick message?"
+          kicker="Contact"
+        >
+          <p
+            className={cx(
+              "-mt-2 mb-8 max-w-3xl text-sm md:text-base",
+              theme === "dark" ? "text-zinc-300" : "text-zinc-700"
+            )}
+          >
+            Have a product, integration, or platform in mind? I can help scope,
+            architect, and deliver it end‑to‑end — then run it like a service.
+            Send a short brief and I’ll reply with options.
+          </p>
+
+          <ContactForm />
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              "AWS Data Center Operations — Calgary, AB",
+              "5+ years continuous Amazon / AWS tenure",
+              "AWS Certified Cloud Practitioner",
+              "Cloud Solutions Architect · DevOps Engineer",
+              "Full‑Stack: React/Next, Node, Django",
+              "U.S. build & enablement assignments",
+            ].map((fact) => (
+              <div
+                key={fact}
+                className={cx(
+                  "flex items-start gap-2 rounded-xl border px-4 py-3 text-sm",
+                  theme === "dark"
+                    ? "border-zinc-800 bg-zinc-900/40 text-zinc-300"
+                    : "border-zinc-200 bg-white text-zinc-700"
+                )}
+              >
+                <CheckCircle2
+                  size={15}
+                  className="mt-0.5 shrink-0 text-emerald-500"
+                />
+                {fact}
+              </div>
+            ))}
+          </div>
+        </Section>
+        </main>
 
         {/* ===== Footer ===== */}
         <footer
