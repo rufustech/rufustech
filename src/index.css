@@ -35,6 +35,25 @@ code {
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Accent text colour.
+
+   The theme is React state, not a `dark` class on <html>, so Tailwind's `dark:`
+   variant is not available. The root element carries data-theme, and accent
+   TEXT resolves through that.
+
+   Why this exists: emerald-500 measures 2.43:1 against the light background and
+   emerald-400 only 1.84:1 — both fail WCAG for text. emerald-700 is 5.25:1.
+   Use .text-accent for accent-coloured TEXT; plain text-emerald-500 is fine for
+   icons and decorative marks that aren't carrying meaning alone.
+   --------------------------------------------------------------------------- */
+.text-accent {
+  color: #10b981; /* emerald-500 — on the dark background */
+}
+[data-theme="light"] .text-accent {
+  color: #047857; /* emerald-700 — 5.25:1 on zinc-50 */
+}
+
 /* FAQ accordions use native <details>. Suppress the default disclosure
    triangle (Safari/older Chrome need the vendor pseudo-element) so the
    custom chevron is the only affordance. */

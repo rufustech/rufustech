@@ -945,7 +945,7 @@ function ProjectCard({ p, onOpen }) {
         ))}
       </div>
       {p.featured && (
-        <div className="mt-4 inline-flex items-center gap-1 text-[11px] text-emerald-500">
+        <div className="mt-4 inline-flex items-center gap-1 text-[11px] font-medium text-accent">
           <BadgeCheck size={14} /> Featured
         </div>
       )}
@@ -958,7 +958,7 @@ function TimelineItem({ v }) {
   return (
     <div className="relative pl-8">
       <div className="absolute left-1.5 top-1 h-2 w-2 rounded-full bg-emerald-500" />
-      <div className="text-sm text-emerald-500">{v.period}</div>
+      <div className="text-sm font-medium text-accent">{v.period}</div>
       <div
         className={cx(
           "font-semibold",
@@ -1256,6 +1256,9 @@ export default function Home() {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div
+        // data-theme drives the .text-accent rule in index.css, which keeps
+        // accent-coloured text readable in light mode.
+        data-theme={theme}
         className={cx(
           "min-h-screen transition-colors duration-300",
           theme === "dark"
@@ -1266,7 +1269,14 @@ export default function Home() {
         {/* Scroll progress */}
         <motion.div
           style={{ scaleX }}
-          className="fixed top-0 left-0 right-0 z-50 h-[3px] origin-left bg-gradient-to-r from-emerald-400 via-teal-300 to-sky-400"
+          className={cx(
+            "fixed top-0 left-0 right-0 z-50 h-[3px] origin-left bg-gradient-to-r",
+            // Pale stops vanish against the near-white page background, and
+            // this bar is a functional progress indicator, not decoration.
+            theme === "dark"
+              ? "from-emerald-400 via-teal-300 to-sky-400"
+              : "from-emerald-600 via-teal-500 to-sky-600"
+          )}
         />
         {/* ===== Sticky Nav ===== */}
         <div
@@ -1274,13 +1284,14 @@ export default function Home() {
             "fixed inset-x-0 top-0 z-40 backdrop-blur border-b transition-colors",
             theme === "dark"
               ? "supports-[backdrop-filter]:bg-black/40 border-zinc-900"
-              : "supports-[backdrop-filter]:bg-white/40 border-zinc-200"
+              : // 40% white over the hero photo left the nav links muddy.
+                "supports-[backdrop-filter]:bg-white/75 border-zinc-200"
           )}
         >
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-14">
             <button
               onClick={() => scrollTo("home")}
-              className="font-bold tracking-tight text-xl text-emerald-500"
+              className="font-bold tracking-tight text-xl text-accent"
             >
               Rufaro
               <span
@@ -1351,7 +1362,10 @@ export default function Home() {
               : "bg-[radial-gradient(60rem_60rem_at_120%_-20%,rgba(16,185,129,0.12),transparent_40%),radial-gradient(40rem_40rem_at_-20%_10%,rgba(59,130,246,0.08),transparent_40%)]"
           )}
         >
-          {/* Backdrop image shade */}
+          {/* Backdrop image shade.
+              Light mode needs a far heavier hand than dark: the photos are
+              bright screenshots, so at low opacity they bleed through and
+              wreck contrast on the headline and body copy. */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-cover bg-center"
@@ -1360,14 +1374,26 @@ export default function Home() {
               filter:
                 theme === "dark"
                   ? "grayscale(40%) contrast(1.1)"
-                  : "grayscale(20%) contrast(1.05) brightness(1.1)",
+                  : "grayscale(65%) contrast(0.9) brightness(1.08)",
             }}
           />
+          {/* Flat scrim */}
           <div
             aria-hidden
             className={cx(
-              "absolute inset-0",
-              theme === "dark" ? "bg-black/60" : "bg-white/70"
+              "pointer-events-none absolute inset-0",
+              theme === "dark" ? "bg-black/60" : "bg-white/80"
+            )}
+          />
+          {/* Directional scrim: opaque behind the text column, clearing toward
+              the portrait so the image is still visible. */}
+          <div
+            aria-hidden
+            className={cx(
+              "pointer-events-none absolute inset-0",
+              theme === "dark"
+                ? "bg-gradient-to-r from-black/70 via-black/40 to-transparent"
+                : "bg-gradient-to-r from-white/95 via-white/80 to-white/30"
             )}
           />
 
@@ -1392,7 +1418,17 @@ export default function Home() {
                 )}
               >
                 Freelance software developer for{" "}
-                <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-sky-400 bg-clip-text text-transparent">
+                {/* Gradient stops are theme-specific: the light 300/400 stops
+                    sit at roughly 1.3:1 on a white background. The 600/700
+                    stops clear the 3:1 AA threshold for large text. */}
+                <span
+                  className={cx(
+                    "bg-clip-text text-transparent bg-gradient-to-r",
+                    theme === "dark"
+                      ? "from-emerald-400 via-teal-300 to-sky-400"
+                      : "from-emerald-600 via-teal-600 to-sky-700"
+                  )}
+                >
                   web apps, SaaS, and the cloud they run on
                 </span>
                 .
@@ -1418,7 +1454,7 @@ export default function Home() {
                   href="https://fluxlogistics.co.uk/"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-emerald-400 underline-offset-4 hover:underline"
+                  className="text-accent font-medium underline-offset-4 hover:underline"
                 >
                   Flux Logistics
                 </a>
@@ -1427,7 +1463,7 @@ export default function Home() {
                   href="https://magetsi.co.zw"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-emerald-400 underline-offset-4 hover:underline"
+                  className="text-accent font-medium underline-offset-4 hover:underline"
                 >
                   Magetsi
                 </a>
@@ -1455,7 +1491,7 @@ export default function Home() {
                       : "border-emerald-500/40 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
                   )}
                 >
-                  <Briefcase size={18} /> See past work
+                  <Briefcase size={18} /> Explore work
                 </button>
                 <button
                   onClick={() => scrollTo("hire")}
@@ -1542,14 +1578,30 @@ export default function Home() {
         <Section id="about" title="About Rufaro" kicker="Profile">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="md:col-span-2">
-              <div className="prose prose-invert max-w-none">
+              {/* Explicit colours rather than `prose prose-invert`: the
+                  typography plugin isn't installed (tailwind.config plugins is
+                  empty) so those classes did nothing, and prose-invert was
+                  hardcoded for dark regardless of theme. */}
+              <div
+                className={cx(
+                  "max-w-none text-[15px] leading-relaxed",
+                  theme === "dark" ? "text-zinc-300" : "text-zinc-700"
+                )}
+              >
                 <p>
                   All‑round IT professional based in Calgary. AWS Data Center
                   Engineer with 5+ years at Amazon / AWS — plus a Cloud
                   Solutions Architect, DevOps, and full‑stack track shipping
                   production platforms.
                 </p>
-                <ul>
+                <ul
+                  className={cx(
+                    "mt-4 space-y-2 list-disc pl-5",
+                    theme === "dark"
+                      ? "marker:text-emerald-500"
+                      : "marker:text-emerald-600"
+                  )}
+                >
                   <li>
                     <strong>Data Center Ops:</strong> rack build, structured
                     cabling, Cisco fabrics, change management, incident
@@ -1861,7 +1913,7 @@ export default function Home() {
                         : "border-zinc-200 bg-white"
                     )}
                   >
-                    <div className="flex items-center gap-2 text-emerald-500 text-sm">
+                    <div className="flex items-center gap-2 text-accent text-sm font-medium">
                       <Rocket size={16} /> Flagship
                     </div>
                     <div
@@ -2385,7 +2437,7 @@ export default function Home() {
 
             <div className="relative grid lg:grid-cols-3 gap-8">
               <div className="lg:col-span-1">
-                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-400">
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-accent">
                   <Cloud size={14} /> AWS · DevOps · Data Center
                 </div>
                 <h3
@@ -2424,7 +2476,7 @@ export default function Home() {
                           : "border-zinc-200 bg-white"
                       )}
                     >
-                      <div className="flex items-center gap-2 text-emerald-500">
+                      <div className="flex items-center gap-2 text-accent">
                         <s.icon size={16} />
                         <span className="text-[11px] uppercase tracking-wider">
                           {s.label}
@@ -2810,7 +2862,7 @@ export default function Home() {
             Something not covered here?{" "}
             <button
               onClick={() => scrollTo("contact")}
-              className="font-semibold text-emerald-500 underline-offset-4 hover:underline"
+              className="font-semibold text-accent underline-offset-4 hover:underline"
             >
               Ask me directly
             </button>{" "}
@@ -2824,6 +2876,37 @@ export default function Home() {
           title="Get a project quote"
           kicker="Intake questionnaire"
         >
+          <p
+            className={cx(
+              "-mt-2 mb-4 max-w-3xl text-sm md:text-base",
+              theme === "dark" ? "text-zinc-300" : "text-zinc-700"
+            )}
+          >
+            Eight short steps, one at a time. Answer what you know and I'll come
+            back with a written proposal — scope, approach, milestones and price.
+          </p>
+
+          <div
+            className={cx(
+              "mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-xl border px-4 py-3 text-sm",
+              theme === "dark"
+                ? "border-zinc-800 bg-zinc-900/40 text-zinc-400"
+                : "border-zinc-200 bg-white text-zinc-600"
+            )}
+          >
+            <ClipboardList size={15} className="shrink-0 text-emerald-500" />
+            <span>
+              This is the detailed brief, for a priced proposal. Just have a
+              quick question?
+            </span>
+            <button
+              onClick={() => scrollTo("contact")}
+              className="font-semibold text-accent underline-offset-4 hover:underline"
+            >
+              Use the short contact form
+            </button>
+          </div>
+
           <div className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-start">
             <div className="min-w-0 lg:order-1">
               <QuoteForm />
@@ -2924,12 +3007,12 @@ export default function Home() {
         {/* ===== Contact ===== */}
         <Section
           id="contact"
-          title="Prefer a quick message?"
-          kicker="Contact"
+          title="Contact me"
+          kicker="Get in touch"
         >
           <p
             className={cx(
-              "-mt-2 mb-8 max-w-3xl text-sm md:text-base",
+              "-mt-2 mb-4 max-w-3xl text-sm md:text-base",
               theme === "dark" ? "text-zinc-300" : "text-zinc-700"
             )}
           >
@@ -2937,6 +3020,29 @@ export default function Home() {
             architect, and deliver it end‑to‑end — then run it like a service.
             Send a short brief and I’ll reply with options.
           </p>
+
+          {/* Signposts the difference between this and the quote
+              questionnaire, so neither form feels like the wrong door. */}
+          <div
+            className={cx(
+              "mb-8 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-xl border px-4 py-3 text-sm",
+              theme === "dark"
+                ? "border-zinc-800 bg-zinc-900/40 text-zinc-400"
+                : "border-zinc-200 bg-white text-zinc-600"
+            )}
+          >
+            <Mail size={15} className="shrink-0 text-emerald-500" />
+            <span>
+              This is the short form — a message straight to my inbox. Want a
+              priced proposal instead?
+            </span>
+            <button
+              onClick={() => scrollTo("quote")}
+              className="font-semibold text-accent underline-offset-4 hover:underline"
+            >
+              Fill in the quote questionnaire
+            </button>
+          </div>
 
           <ContactForm />
 

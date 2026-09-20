@@ -906,28 +906,29 @@ export default function QuoteForm() {
           </div>
         )}
 
-        {/* fields for this step */}
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={step.id}
-            initial={{ opacity: 0, x: 12 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -12 }}
-            transition={{ duration: 0.2 }}
-            className="mt-6 grid gap-5 sm:grid-cols-2"
-          >
-            {step.fields.map((field) => (
-              <div key={field.name} className={field.full ? "sm:col-span-2" : undefined}>
-                <Field
-                  field={field}
-                  value={answers[field.name]}
-                  error={errors[field.name]}
-                  onChange={setField(field.name)}
-                />
-              </div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+        {/* Fields for the current step only.
+            Keyed on step.id so React swaps the whole group on navigation.
+            Deliberately NOT wrapped in <AnimatePresence mode="wait">: that
+            waits for the outgoing exit animation before mounting the incoming
+            fields, leaving a window where the step has no inputs at all. */}
+        <motion.div
+          key={step.id}
+          initial={{ opacity: 0, x: 10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.18, ease: "easeOut" }}
+          className="mt-6 grid gap-5 sm:grid-cols-2"
+        >
+          {step.fields.map((field) => (
+            <div key={field.name} className={field.full ? "sm:col-span-2" : undefined}>
+              <Field
+                field={field}
+                value={answers[field.name]}
+                error={errors[field.name]}
+                onChange={setField(field.name)}
+              />
+            </div>
+          ))}
+        </motion.div>
 
         {/* honeypot */}
         <div aria-hidden="true" className="absolute left-[-9999px] h-px w-px overflow-hidden">
